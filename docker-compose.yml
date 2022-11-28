@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+  django:
+    build: ./backend
+    volumes:
+      - ./backend:/app/backend
+      - ./docs:/app/docs
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=backend.settings.development
+    stdin_open: true
+    tty: true
+    command: python manage.py runserver 0.0.0.0:8000
+
+  react:
+    build: ./frontend
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./frontend:/app
+      # One-way volume to use node_modules from inside image
+      - /app/node_modules
+    ports:
+      - "8080:3000"
+    environment:
+      - NODE_ENV=development
+      - NODE_OPTIONS=openssl-legacy-provider
+    depends_on:
+      - django
+    command: npm start
