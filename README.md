@@ -3,7 +3,7 @@ DriveBC Code Challenge ======================
 [![Built with Cookiecutter React Django](https://img.shields.io/badge/built%20with-Cookiecutter%20React%20Django-blue)](https://img.shields.io/badge/built%20with-Cookiecutter%20React%20Django-blue)
 
 ## Local setup
-On your terminal, simply do `docker-compose up --build`, and wait for the containers to build. Eventually, you'll be able to see the index page by going to `[http://127.0.0.1/](http://127.0.0.1/)`.
+On your terminal, simply do `docker-compose up --build`, and wait for the containers to build. Eventually, you'll be able to see the index page by going to `http://localhost:8080`.
 
 ## Test coverage
 To run the tests, check your test coverage, and generate a coverage report:
