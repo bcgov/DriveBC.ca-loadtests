@@ -2,7 +2,7 @@
 
 
 ## User Authentication
-
+=======
 
 ## Development Setup (MacOS)
 1. Install Docker and Docker Compose.
@@ -13,7 +13,7 @@
 5. Set up the pre-commit hooks:
    `pre-commit install && pre-commit install --hook-type commit-msg`.
 6. Run `docker-compose up -d --build` to build and start containers.
-7. The site should now be is available at <http://localhost:8080>.
+7. The site should now be is available at <http://localhost:3000>.
     Visit <http://localhost:8000/admin/> (login required) and you
     should see the Django Admin.
 8. Run `docker-compose run --rm django python manage.py createsuperuser` and
@@ -30,7 +30,7 @@
 5. Set up the pre-commit hooks:
    `pre-commit install && pre-commit install --hook-type commit-msg`.
 6. Run `docker-compose up -d --build` to build and start containers.
-7. The site should now be is available at <http://localhost:8080>.
+7. The site should now be is available at <http://localhost:3000>.
     Visit <http://localhost:8000/admin/> (login required) and you
     should see the Django Admin.
 8. Run `docker-compose run --rm django python manage.py createsuperuser` and

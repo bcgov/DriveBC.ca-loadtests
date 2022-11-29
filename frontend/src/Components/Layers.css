@@ -1,0 +1,47 @@
+.open-layers, .layers {
+  top: 10rem;
+  right: 2rem;
+  position: absolute;
+}
+
+button.close-layers {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0;
+  min-width: 0;
+  line-height: 1.25rem;
+  height: auto;
+  background: none;
+  border:none;
+  font-size: 1rem;
+}
+
+.layers {
+  width: 20rem;
+  min-height: 20rem;
+  background: white;
+  border: solid 1px rgb(118, 118, 118);
+  text-align: left;
+  padding: 1rem;
+}
+
+.layers-select {
+  display: flex;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.panel + .panel {
+  margin-left: 1rem;
+}
+
+.panel .icon {
+  height: 5rem;
+  width: 5rem;
+  border: solid 1px rgb(118, 118, 118);
+}

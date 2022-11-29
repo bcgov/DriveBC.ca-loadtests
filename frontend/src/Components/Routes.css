@@ -1,0 +1,57 @@
+
+.open-routes, .routes {
+  top: 4rem;
+  left: 2rem;
+  position: absolute;
+}
+
+.close-routes {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0;
+  min-width: 0;
+  line-height: 1.25rem;
+  height: auto;
+  background: none;
+  border:none;
+}
+
+.routes {
+  width: 20rem;
+  min-height: 20rem;
+  background: white;
+  border: solid 1px rgb(118, 118, 118);
+}
+
+.anchor {
+  width: 3rem; 
+  font-size: 3rem;;
+}
+
+.starting {
+  display: flex;
+}
+
+.notification {
+  text-align: left;
+  padding-left: 3rem;
+}
+
+h4 {
+  text-align: left;
+}
+
+.options {
+  display: flex;
+  justify-content: center;
+}
+
+.option {
+  width: 5rem;
+}
+
+.pin-icon {
+  font-size: 2rem;
+  font-weight: bold;
+}
