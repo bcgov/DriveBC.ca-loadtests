@@ -13,6 +13,10 @@ WORKDIR /app/backend
 COPY ./backend/requirements /app/backend/requirements
 RUN pip install -r requirements/production.txt
 
+COPY backend/scripts/start.sh /start.sh
+RUN sed -i 's/\r$//g' /start.sh
+RUN chmod +x /start.sh
+
 # Install JS dependencies
 WORKDIR /app/frontend
 
@@ -37,7 +41,7 @@ RUN mkdir /app/backend/staticfiles
 WORKDIR /app
 
 # SECRET_KEY is only included here to avoid raising an error when generating static files
-RUN DJANGO_SETTINGS_MODULE=backend.settings.production \
+RUN DJANGO_SETTINGS_MODULE=config.settings.production \
   SECRET_KEY=somethingsupersecret \
   python backend/manage.py collectstatic --noinput
 

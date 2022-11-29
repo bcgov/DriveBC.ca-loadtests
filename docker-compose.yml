@@ -8,10 +8,17 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DJANGO_SETTINGS_MODULE=backend.settings.development
+      - DJANGO_SETTINGS_MODULE=config.settings.development
+      - DB_ENGINE=django.contrib.gis.db.backends.postgis
+      - DB_NAME=drivebc
+      - DB_USER=drivebc
+      - DB_PASSWORD=Passw0rd!
+      - DB_HOST=db
     stdin_open: true
     tty: true
-    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db
+    command: /start.sh
 
   react:
     build: ./frontend
@@ -29,3 +36,19 @@ services:
     depends_on:
       - django
     command: npm start
+
+  db:
+    image: postgis/postgis:15-3.3-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=drivebc
+      - POSTGRES_USER=drivebc
+      - POSTGRES_PASSWORD=Passw0rd!
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+    driver: local

@@ -1,6 +1,7 @@
 ### Python template
 # Byte-compiled / optimized / DLL files
-__pycache__/
+__pycache__
+*.pyc
 *.py[cod]
 *$py.class
 
@@ -45,10 +46,14 @@ nosetests.xml
 coverage.xml
 *.cover
 .hypothesis/
-.pytest_cache/
+
+# Translations
+*.mo
+*.pot
 
 # Django stuff:
 staticfiles/
+.pytest_cache/
 uploaded_media/
 
 # Sphinx documentation
@@ -155,11 +160,21 @@ typings/
 !.vscode/tasks.json
 # !.vscode/settings.json
 # !.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
 
 
+# Provided default Pycharm Run/Debug Configurations should be tracked by git
+# In case of local modifications made by Pycharm, use update-index command
+# for each changed file, like this:
+# git update-index --assume-unchanged .idea/drivebcclone.iml
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+.idea/
 
 # User-specific stuff:
 .idea/**/workspace.xml
