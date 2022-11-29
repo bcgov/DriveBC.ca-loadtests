@@ -1,27 +1,41 @@
 version: "3.7"
+
+x-function: &backend
+  build: 
+    context: .
+    dockerfile: ./compose/backend/Dockerfile
+  
+  volumes:
+    - ./backend:/app/backend
+    - ./docs:/app/docs
+  environment:
+    - DJANGO_SETTINGS_MODULE=config.settings.development
+    - DB_ENGINE=django.contrib.gis.db.backends.postgis
+    - DB_NAME=drivebc
+    - DB_USER=drivebc
+    - DB_PASSWORD=Passw0rd!
+    - DB_HOST=db
+  stdin_open: true
+  tty: true
+  depends_on:
+    - db
+
+volumes:
+  mailhogdata:
+  db_data:
+    driver: local
+
 services:
-  django:
-    build: ./backend
-    volumes:
-      - ./backend:/app/backend
-      - ./docs:/app/docs
+  django: 
+    <<: *backend
     ports:
       - "8000:8000"
-    environment:
-      - DJANGO_SETTINGS_MODULE=config.settings.development
-      - DB_ENGINE=django.contrib.gis.db.backends.postgis
-      - DB_NAME=drivebc
-      - DB_USER=drivebc
-      - DB_PASSWORD=Passw0rd!
-      - DB_HOST=db
-    stdin_open: true
-    tty: true
-    depends_on:
-      - db
     command: /start.sh
 
   react:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: ../compose/frontend/Dockerfile
     stdin_open: true
     tty: true
     volumes:
@@ -49,6 +63,17 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
-volumes:
-  db_data:
-    driver: local
+  worker:
+    <<: *backend
+    image: drivebc_worker
+    command: /start-worker
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    container_name: drivebc_mailhog
+    environment:
+      MH_STORAGE: maildir
+    volumes:
+      - mailhogdata:/maildir
+
+

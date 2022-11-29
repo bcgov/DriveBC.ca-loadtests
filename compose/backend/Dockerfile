@@ -9,14 +9,18 @@ RUN apt-get install -y binutils libproj-dev gdal-bin
 WORKDIR /app/backend
 
 # Install Python dependencies
-COPY ./requirements /app/backend/requirements
+COPY ./backend/requirements /app/backend/requirements
 RUN pip install -r requirements/development.txt
 
-COPY ./scripts/start.sh /
+COPY ./backend/scripts/start.sh /
 RUN sed -i 's/\r$//g' /start.sh && chmod +x /start.sh
 
+COPY ./compose/backend/worker/start /start-worker
+RUN sed -i 's/\r$//g' /start-worker
+RUN chmod +x /start-worker
+
 # Add the rest of the code
-COPY . /app/backend
+COPY ./backend /app/backend
 
 # Make port 8000 available for the app
 EXPOSE 8000
