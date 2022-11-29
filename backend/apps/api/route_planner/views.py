@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from apps.api.route_planner.permissions import IsAdminOrReadOnly
 from apps.api.route_planner.serializers import TravelAdvisoryMessageSerializer
 from apps.drivebc_api.drivebc_client import DrivebcClient
@@ -16,7 +18,8 @@ class TravelAdvisoryMessageViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         qs = super().get_queryset()
         if not self.request.user.is_staff:
-            return qs.filter(pub_date__isnull=False)
+            now = timezone.now()
+            return qs.filter(pub_date__isnull=False, pub_date__lt=now)
         return qs
 
 
