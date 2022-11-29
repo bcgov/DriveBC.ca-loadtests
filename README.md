@@ -10,12 +10,15 @@
    `brew install pre-commit`.
 3. Clone the project.
 4. `cd drivebc-code-challenge`
-5. Setup the pre-commit hooks:
+5. Set up the pre-commit hooks:
    `pre-commit install && pre-commit install --hook-type commit-msg`.
 6. Run `docker-compose up -d --build` to build and start containers.
 7. The site should now be is available at <http://localhost:8080>.
     Visit <http://localhost:8000/admin/> (login required) and you
     should see the Django Admin.
+8. Run `docker-compose run --rm django python manage.py createsuperuser` and 
+   follow the prompts to create a superuser with admin access. 
+   Use their username and password to access Django Admin.
 
 
 ## Development Setup (Windows)
@@ -24,12 +27,15 @@
    `pip install pre-commit`.
 3. Clone the project.
 4. `cd drivebc-code-challenge`
-5. Setup the pre-commit hooks:
+5. Set up the pre-commit hooks:
    `pre-commit install && pre-commit install --hook-type commit-msg`.
 6. Run `docker-compose up -d --build` to build and start containers.
 7. The site should now be is available at <http://localhost:8080>.
     Visit <http://localhost:8000/admin/> (login required) and you
     should see the Django Admin.
+8. Run `docker-compose run --rm django python manage.py createsuperuser` and 
+   follow the prompts to create a superuser with admin access. 
+   Use their username and password to access Django Admin.
 
 ## Docker and Network Architecture
 - `drivebc-code-challenge_django_1`: Django web app. Restarts on code changes.
@@ -53,7 +59,7 @@ It also checks syntax, including import order and complexity, via
 flake8. Linting is done via pre commit hooks installed using
 [pre-commit](https://pre-commit.com).
 
-Javascript linting via eslint is run in a pre commit hook. To setup
+Javascript linting via eslint is run in a pre commit hook. To set up
 Javascript linting in VS Code, install yarn and run `yarn install` in
 the `frontend` directory, and install the ESlint extension.
 
@@ -78,7 +84,7 @@ branching model; development branches should be prefixed (e.g.
 production release.
 
 Merge commits are generally preferred for complex changes, although for
-simple (e.g. small single commit) changes fast forward is OK.
+simple (e.g. small single commit) changes fast-forward is OK.
 
 It's not strictly required but the [gitflow-avh
 plugin](https://github.com/petervanderdoes/gitflow-avh) makes it much
@@ -91,8 +97,8 @@ common operations.
 
 `make test` will run python tests via pytest and frontend tests via
 jest. You can also run them directly with
-`docker-compose run --rm backend python -m pytest` (pytest) and
-`docker-compose run --rm frontend yarn test` (jest).
+`docker-compose run --rm django python -m pytest` (pytest) and
+`docker-compose run --rm react yarn test` (jest).
 
 By default, the pytest tests run a reasonable subset of possible
 permissions checks. To run tests for most possible permissions cases,
