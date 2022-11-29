@@ -1,4 +1,4 @@
-from apps.api.route_planner.views import TravelAdvisoryMessageViewSet
+from apps.api.route_planner.views import TravelAdvisoryMessageViewSet, WebcamDataAPIView
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
@@ -10,5 +10,10 @@ router.register(
 )
 
 urlpatterns = [
+    path(
+        "webcams",
+        WebcamDataAPIView.as_view(),
+        name="webcams",
+    ),
     path("", include(router.urls)),
 ]

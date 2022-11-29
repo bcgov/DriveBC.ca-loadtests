@@ -16,8 +16,8 @@
 7. The site should now be is available at <http://localhost:8080>.
     Visit <http://localhost:8000/admin/> (login required) and you
     should see the Django Admin.
-8. Run `docker-compose run --rm django python manage.py createsuperuser` and 
-   follow the prompts to create a superuser with admin access. 
+8. Run `docker-compose run --rm django python manage.py createsuperuser` and
+   follow the prompts to create a superuser with admin access.
    Use their username and password to access Django Admin.
 
 
@@ -33,8 +33,8 @@
 7. The site should now be is available at <http://localhost:8080>.
     Visit <http://localhost:8000/admin/> (login required) and you
     should see the Django Admin.
-8. Run `docker-compose run --rm django python manage.py createsuperuser` and 
-   follow the prompts to create a superuser with admin access. 
+8. Run `docker-compose run --rm django python manage.py createsuperuser` and
+   follow the prompts to create a superuser with admin access.
    Use their username and password to access Django Admin.
 
 ## Docker and Network Architecture

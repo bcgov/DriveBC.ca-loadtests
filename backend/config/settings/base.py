@@ -33,7 +33,12 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
 ]
 
-LOCAL_APPS = ["apps.shared", "apps.route_planner"]
+LOCAL_APPS = [
+    "apps.shared",
+    "apps.route_planner",
+    "apps.drivebc_api"
+]
+
 # https://docs.djangoproject.com/en/4.0/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -124,3 +129,13 @@ STATIC_URL = "/static/"
 USE_DJANGO_DEBUG_TOOLBAR = False
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Drive BC API Settings
+
+DRIVEBC_ROUTE_PLANNER_API_BASE_URL = "https://router.api.gov.bc.ca/"
+DRIVEBC_ROUTE_PLANNER_API_AUTH_KEY = env("DRIVEBC_ROUTE_PLANNER_API_AUTH_KEY")
+
+DRIVEBC_WEBCAM_API_BASE_URL = "https://tst-images.drivebc.ca/webcam/api/v1/"
+
+DRIVEBC_OPEN_511_API_BASE_URL = "https://tst-api.open511.gov.bc.ca/"

@@ -1,10 +1,10 @@
 version: "3.7"
 
 x-function: &backend
-  build: 
+  build:
     context: .
     dockerfile: ./compose/backend/Dockerfile
-  
+
   volumes:
     - ./backend:/app/backend
     - ./docs:/app/docs
@@ -15,6 +15,7 @@ x-function: &backend
     - DB_USER=drivebc
     - DB_PASSWORD=Passw0rd!
     - DB_HOST=db
+    - DRIVEBC_ROUTE_PLANNER_API_AUTH_KEY=GIPS68ey7YBSIs22RPYJo2lGZ1ASxfSf
   stdin_open: true
   tty: true
   depends_on:
@@ -26,7 +27,7 @@ volumes:
     driver: local
 
 services:
-  django: 
+  django:
     <<: *backend
     ports:
       - "8000:8000"
@@ -75,5 +76,3 @@ services:
       MH_STORAGE: maildir
     volumes:
       - mailhogdata:/maildir
-
-
