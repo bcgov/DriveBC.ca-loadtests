@@ -20,18 +20,22 @@
    follow the prompts to create a superuser with admin access.
    Use their username and password to access Django Admin.
 
-
 ## Development Setup (Windows)
 1. Install Docker and Docker Compose.
-2. Install [pre-commit](https://pre-commit.com):
-   `pip install pre-commit`.
+2. Install [pre-commit](https://pre-commit.com) _(watch for a message in the console "Scripts is not on PATH" and add it to the environment variable PATH if applicable)_: 
+```
+pip install pre-commit
+```
 3. Clone the project.
 4. `cd drivebc-code-challenge`
-5. Set up the pre-commit hooks:
-   `pre-commit install && pre-commit install --hook-type commit-msg`.
+5. Set up the pre-commit hooks _(ensure the Python Scripts folder is in your path before running this step -- see step #2)_:
+```
+pre-commit install 
+pre-commit install --hook-type commit-msg
+```
 6. Run `docker-compose up -d --build` to build and start containers.
-7. The site should now be is available at <http://localhost:3000>.
-    Visit <http://localhost:8000/admin/> (login required) and you
+7. The site should now be is available at <http://localhost:30000>.
+    Visit <http://localhost:3000/admin/> (login required) and you
     should see the Django Admin.
 8. Run `docker-compose run --rm django python manage.py createsuperuser` and
    follow the prompts to create a superuser with admin access.
