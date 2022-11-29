@@ -1,16 +1,108 @@
-DriveBC Code Challenge ======================
+# DriveBC Code Challenge - OXD
 
-[![Built with Cookiecutter React Django](https://img.shields.io/badge/built%20with-Cookiecutter%20React%20Django-blue)](https://img.shields.io/badge/built%20with-Cookiecutter%20React%20Django-blue)
 
-## Local setup
-On your terminal, simply do `docker-compose up --build`, and wait for the containers to build. Eventually, you'll be able to see the index page by going to `http://localhost:8080`.
+## User Authentication
 
-## Test coverage
-To run the tests, check your test coverage, and generate a coverage report:
 
-```
-docker-compose run --rm django pytest
-```
+## Development Setup (MacOS)
+1. Install Docker and Docker Compose.
+2. Install [pre-commit](https://pre-commit.com):
+   `brew install pre-commit`.
+3. Clone the project.
+4. `cd drivebc-code-challenge`
+5. Setup the pre-commit hooks:
+   `pre-commit install && pre-commit install --hook-type commit-msg`.
+6. Run `docker-compose up -d --build` to build and start containers.
+7. The site should now be is available at <http://localhost:8080>.
+    Visit <http://localhost:8000/admin/> (login required) and you
+    should see the Django Admin.
+
+
+## Development Setup (Windows)
+1. Install Docker and Docker Compose.
+2. Install [pre-commit](https://pre-commit.com):
+   `pip install pre-commit`.
+3. Clone the project.
+4. `cd drivebc-code-challenge`
+5. Setup the pre-commit hooks:
+   `pre-commit install && pre-commit install --hook-type commit-msg`.
+6. Run `docker-compose up -d --build` to build and start containers.
+7. The site should now be is available at <http://localhost:8080>.
+    Visit <http://localhost:8000/admin/> (login required) and you
+    should see the Django Admin.
+
+## Docker and Network Architecture
+- `drivebc-code-challenge_django_1`: Django web app. Restarts on code changes.
+- `drivebc-code-challenge_react_1`: React front end.
+- `drivebc-code-challenge_db_1`: Postgres database.
+
+## Application Development
+
+
+### Makefile Shortcuts
+
+A number of common commands are aliased in `make`; run `make help` for
+details.
+
+
+### Coding Style and Conventions
+
+This project uses the [Black code
+style](https://black.readthedocs.io/en/stable/the_black_code_style.html).
+It also checks syntax, including import order and complexity, via
+flake8. Linting is done via pre commit hooks installed using
+[pre-commit](https://pre-commit.com).
+
+Javascript linting via eslint is run in a pre commit hook. To setup
+Javascript linting in VS Code, install yarn and run `yarn install` in
+the `frontend` directory, and install the ESlint extension.
+
+
+### Security
+
+This project runs vulnerability scans on both the backend and frontend projects.
+- `Bandit`: A code analysis tool that checks for security issues in Python code.
+- `Safety`: Checks python dependencies for security vulnerabilities.
+- `Audit`: Checks javascript dependencies for security vulnerabilities. NOTE: This
+current is run manually with `npm audit` but can be added to a build pipeline.
+
+
+### Git Workflow
+
+Changes should be submitted via a Github PR, and approved by at least
+one other dev before merging. We follow the
+[gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+branching model; development branches should be prefixed (e.g.
+`feature/`) and merged into the `develop` branch. At release time,
+`develop` is merged into `main`, which should track the current
+production release.
+
+Merge commits are generally preferred for complex changes, although for
+simple (e.g. small single commit) changes fast forward is OK.
+
+It's not strictly required but the [gitflow-avh
+plugin](https://github.com/petervanderdoes/gitflow-avh) makes it much
+easier to follow this workflow. See the [gitflow
+cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/) for
+common operations.
+
+
+### Running Tests in Docker
+
+`make test` will run python tests via pytest and frontend tests via
+jest. You can also run them directly with
+`docker-compose run --rm backend python -m pytest` (pytest) and
+`docker-compose run --rm frontend yarn test` (jest).
+
+By default, the pytest tests run a reasonable subset of possible
+permissions checks. To run tests for most possible permissions cases,
+pass the `-m full_perms` argument.
+
+To generate Python test coverage, run `make coverage`. To run type
+checks, use `make typecheck`.
+
+By default, tests are run using in memory SQLite.
+
 
 ## Deployment
-You can check how to deploy your app to Heroku [here](https://github.com/ohduran/cookiecutter-react-django#deploy-to-heroku)
+1. TODO
