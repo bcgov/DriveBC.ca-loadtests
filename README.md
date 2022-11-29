@@ -34,8 +34,8 @@ pre-commit install
 pre-commit install --hook-type commit-msg
 ```
 6. Run `docker-compose up -d --build` to build and start containers.
-7. The site should now be is available at <http://localhost:30000>.
-    Visit <http://localhost:3000/admin/> (login required) and you
+7. The site should now be is available at <http://localhost:3000>.
+    Visit <http://localhost:8000/admin/> (login required) and you
     should see the Django Admin.
 8. Run `docker-compose run --rm django python manage.py createsuperuser` and
    follow the prompts to create a superuser with admin access.
