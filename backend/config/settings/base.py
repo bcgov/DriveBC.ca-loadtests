@@ -162,3 +162,13 @@ HUEY = {
     },
     "immediate": False,
 }
+
+# EMAIL
+# https://docs.djangoproject.com/en/4.0/ref/settings/#email-backend
+EMAIL_BACKEND = env(
+    "EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
+)
+EMAIL_HOST = env("EMAIL_HOST", default="localhost")
+EMAIL_PORT = env.int("EMAIL_PORT", 1025)
+EMAIL_TIMEOUT = env.int("EMAIL_TIMEOUT", 5)
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="test@oxd.com")
