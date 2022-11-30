@@ -13,6 +13,7 @@ from apps.route_planner.models import Route, TravelAdvisoryMessage
 from django.contrib.gis.geos import LineString, Point
 from django.http import JsonResponse
 from django.utils import timezone
+from django.utils.functional import cached_property
 from httpx import HTTPStatusError, RequestError
 from rest_framework import mixins, status, views, viewsets
 from rest_framework.response import Response
@@ -38,6 +39,7 @@ class TravelAdvisoryMessageViewSet(viewsets.ModelViewSet):
 class WebcamDataAPIView(views.APIView):
     """Retrieve webcam data from Drive BC API"""
 
+    @cached_property
     def get(self, request, *args, **kwargs):
         webcam_data = DrivebcClient().get_webcams()
         return JsonResponse(data=webcam_data)
