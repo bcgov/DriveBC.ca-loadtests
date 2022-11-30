@@ -20,9 +20,9 @@ export default function Map(){
   const location = new maplibregl.Marker().setLngLat([-123.1207, 49.2827])
   const start = new maplibregl.Marker({color: '#003399', draggable: true});
   const end = new maplibregl.Marker({color: '#009933', draggable: true});
-  const lng = -123.1207;
-  const lat = 49.2827;
-  const zoom = 14; 
+  const lng = -120.7862;
+  const lat = 50.113;
+  const zoom = 7.5;
   const [layersOpen, setLayersOpen] = useState(false);
   const [routesOpen, setRoutesOpen] = useState(true);
 
@@ -151,16 +151,16 @@ export default function Map(){
       <button className="zoom-in" onClick={zoomIn}>+</button>
       <button className="zoom-out" onClick={zoomOut}>-</button>
 
-      <Routes 
-        open={routesOpen} 
-        setRoutesOpen={toggleRoutes} 
-        setStartToLocation={setStartToLocation} 
+      <Routes
+        open={routesOpen}
+        setRoutesOpen={toggleRoutes}
+        setStartToLocation={setStartToLocation}
         routeHandler={routeHandler}
       />
 
-      <Layers 
-        open={layersOpen} 
-        setLayersOpen={toggleLayers} 
+      <Layers
+        open={layersOpen}
+        setLayersOpen={toggleLayers}
         toggleLayer={toggleLayer}
       />
     </div>
