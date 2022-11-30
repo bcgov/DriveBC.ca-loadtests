@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.gis.db import models
 from django.utils import timezone
+from django.utils.functional import cached_property
 
 
 class TravelAdvisoryMessage(BaseModel):
@@ -33,6 +34,7 @@ class Route(BaseModel):
     KILOMETRES = "km"
     MILES = "mi"
     DISTANCE_UNIT_CHOICES = [(KILOMETRES, "km"), (MILES, "mi")]
+    name = models.CharField(max_length=255)
     email = models.EmailField()
     start_point = models.PointField()
     destination_point = models.PointField()
@@ -46,3 +48,7 @@ class Route(BaseModel):
     )
     distance = models.FloatField(help_text="Length of route in distance units")
     route_time = models.FloatField(help_text="Duration in seconds")
+
+    @cached_property
+    def bbox(self):
+        return self.route_points.extent

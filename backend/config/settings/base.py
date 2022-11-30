@@ -11,17 +11,17 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 
 import environ
-
-from configurations.values import ListValue
-
 from corsheaders.defaults import default_headers
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 env = environ.Env()
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
 
 # CORS
-CORS_ORIGIN_WHITELIST = ListValue(["http://localhost"], separator=" ")
+CORS_ORIGIN_WHITELIST = env.list(
+    "DJANGO_CORS_ORIGIN_WHITELIST", default=["http://localhost"]
+)
 CORS_ALLOW_HEADERS = default_headers + ("contenttype",)
 
 # Application definition
@@ -50,7 +50,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "corsheaders.middleware.CorsMiddleware", 
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

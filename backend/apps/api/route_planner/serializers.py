@@ -17,15 +17,16 @@ class TravelAdvisoryMessageSerializer(serializers.ModelSerializer):
         )
 
 
-class RoutePoint(serializers.Serializer):
+class RoutePointSerializer(serializers.Serializer):
     lng = serializers.FloatField()
     lat = serializers.FloatField()
 
 
 class RouteParameterSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=255)
     email = serializers.EmailField()
-    start_location = RoutePoint()
-    destination = RoutePoint()
+    start_location = RoutePointSerializer()
+    destination = RoutePointSerializer()
 
 
 class RouteSerializer(GeoFeatureModelSerializer):

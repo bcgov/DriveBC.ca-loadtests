@@ -81,3 +81,15 @@ class DrivebcClient:
         serializer = DrivebcRouteSerializer(data=response_data)
         serializer.is_valid(raise_exception=True)
         return serializer.validated_data
+
+    def get_events(self, limit=500, bbox="", updated=None):
+        """Used for getting the list of events with details."""
+        endpoint = self._get_endpoint(resource_type=OPEN511, resource_name="events")
+        params = {"limit": limit}
+        if bbox:
+            params["bbox"] = bbox
+        if updated:
+            params["updated"] = f">{updated}"
+        return self._process_get_request(
+            endpoint, resource_type=ROUTE_PLANNER, params=params, timeout=10.0
+        )

@@ -1,7 +1,5 @@
 import logging
 
-from rest_framework.exceptions import APIException
-from django.utils.decorators import method_decorator
 from apps.api.route_planner.permissions import IsAdminOrReadOnly
 from apps.api.route_planner.serializers import (
     RouteParameterSerializer,
@@ -13,9 +11,11 @@ from apps.route_planner.models import Route, TravelAdvisoryMessage
 from django.contrib.gis.geos import LineString, Point
 from django.http import JsonResponse
 from django.utils import timezone
+from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from httpx import HTTPStatusError, RequestError
 from rest_framework import mixins, status, views, viewsets
+from rest_framework.exceptions import APIException
 from rest_framework.response import Response
 
 logger = logging.getLogger(__name__)
@@ -39,7 +39,7 @@ class TravelAdvisoryMessageViewSet(viewsets.ModelViewSet):
 class WebcamDataAPIView(views.APIView):
     """Retrieve webcam data from Drive BC API"""
 
-    @method_decorator(cache_page(60*60*2))
+    @method_decorator(cache_page(60 * 60 * 2))
     def get(self, request, *args, **kwargs):
         webcam_data = DrivebcClient().get_webcams()
         return JsonResponse(data=webcam_data)
@@ -86,6 +86,7 @@ class RouteViewSet(
             raise APIException("This route cannot be calculated")
         # Update route data returned from API with data from request
         route_data["email"] = params_data.get("email")
+        route_data["name"] = params_data.get("name")
         route_data["start_point"] = Point(x_lng, x_lat)
         route_data["destination_point"] = Point(y_lng, y_lat)
         route_data["route_points"] = LineString(route_data.get("route_points"))
@@ -96,3 +97,12 @@ class RouteViewSet(
         return Response(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
+
+
+class EventDataAPIView(views.APIView):
+    """Retrieve road event data from Drive BC API"""
+
+    @method_decorator(cache_page(60 * 5))
+    def get(self, request, *args, **kwargs):
+        event_data = DrivebcClient().get_events()
+        return JsonResponse(data=event_data)
