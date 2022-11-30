@@ -32,6 +32,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "rest_framework_gis",
+    "huey.contrib.djhuey",
 ]
 
 LOCAL_APPS = ["apps.shared", "apps.route_planner", "apps.drivebc_api"]
@@ -136,3 +137,13 @@ DRIVEBC_ROUTE_PLANNER_API_AUTH_KEY = env("DRIVEBC_ROUTE_PLANNER_API_AUTH_KEY")
 DRIVEBC_WEBCAM_API_BASE_URL = "https://tst-images.drivebc.ca/webcam/api/v1/"
 
 DRIVEBC_OPEN_511_API_BASE_URL = "https://tst-api.open511.gov.bc.ca/"
+
+HUEY = {
+    "name": "drivebc",
+    "connection": {
+        "host": env("REDIS_HOST"),
+        "port": env("REDIS_PORT", default="6379"),
+        "db": env("REDIS_DB", default="0"),
+    },
+    "immediate": False,
+}

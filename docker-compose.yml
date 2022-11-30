@@ -16,24 +16,29 @@ x-function: &backend
     - DB_PASSWORD=Passw0rd!
     - DB_HOST=db
     - DRIVEBC_ROUTE_PLANNER_API_AUTH_KEY=GIPS68ey7YBSIs22RPYJo2lGZ1ASxfSf
+    - REDIS_HOST=drivebc_redis
   stdin_open: true
   tty: true
   depends_on:
     - db
+    - redis
 
 volumes:
   mailhogdata:
+  redisdata:
   db_data:
     driver: local
 
 services:
   django:
     <<: *backend
+    container_name: drivebc_backend
     ports:
       - "8000:8000"
     command: /start.sh
 
   react:
+    container_name: drivebc_frontend
     build:
       context: ./frontend
       dockerfile: ../compose/frontend/Dockerfile
@@ -54,6 +59,7 @@ services:
 
   db:
     image: postgis/postgis:15-3.3-alpine
+    container_name: drivebc_db
     restart: unless-stopped
     environment:
       - POSTGRES_DB=drivebc
@@ -66,6 +72,7 @@ services:
 
   worker:
     <<: *backend
+    container_name: drivebc_worker
     image: drivebc_worker
     command: /start-worker
 
@@ -76,3 +83,12 @@ services:
       MH_STORAGE: maildir
     volumes:
       - mailhogdata:/maildir
+
+  redis:
+    image: "redis:6.2"
+    container_name: drivebc_redis
+    command: redis-server --appendonly yes
+    volumes:
+      - redisdata:/data
+    ports:
+      - "6379:6379"

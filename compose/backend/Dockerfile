@@ -12,7 +12,7 @@ WORKDIR /app/backend
 COPY ./backend/requirements /app/backend/requirements
 RUN pip install -r requirements/development.txt
 
-COPY ./backend/scripts/start.sh /
+COPY ./compose/backend/start.sh /
 RUN sed -i 's/\r$//g' /start.sh && chmod +x /start.sh
 
 COPY ./compose/backend/worker/start /start-worker

@@ -22,7 +22,7 @@
 
 ## Development Setup (Windows)
 1. Install Docker and Docker Compose.
-2. Install [pre-commit](https://pre-commit.com) _(watch for a message in the console "Scripts is not on PATH" and add it to the environment variable PATH if applicable)_: 
+2. Install [pre-commit](https://pre-commit.com) _(watch for a message in the console "Scripts is not on PATH" and add it to the environment variable PATH if applicable)_:
 ```
 pip install pre-commit
 ```
@@ -30,7 +30,7 @@ pip install pre-commit
 4. `cd drivebc-code-challenge`
 5. Set up the pre-commit hooks _(ensure the Python Scripts folder is in your path before running this step -- see step #2)_:
 ```
-pre-commit install 
+pre-commit install
 pre-commit install --hook-type commit-msg
 ```
 6. Run `docker-compose up -d --build` to build and start containers.
@@ -42,9 +42,12 @@ pre-commit install --hook-type commit-msg
    Use their username and password to access Django Admin.
 
 ## Docker and Network Architecture
-- `drivebc-code-challenge_django_1`: Django web app. Restarts on code changes.
-- `drivebc-code-challenge_react_1`: React front end.
-- `drivebc-code-challenge_db_1`: Postgres database.
+- `drivebc_backend`: Django web app. Restarts on code changes.
+- `drivebc_frontend`: React front end.
+- `drivebc_db`: Postgres database.
+- `drivebc_mailhog`: SMTP server and local mail client for debugging.
+- `drivebc_redis`: Redis. Used for caching and task queues.
+- `drivebc_worker`: Huey worker (task consumer for jobs like polling for events)
 
 ## Application Development
 
