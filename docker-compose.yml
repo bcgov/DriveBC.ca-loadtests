@@ -15,6 +15,7 @@ x-function: &backend
     - DB_USER=drivebc
     - DB_PASSWORD=Passw0rd!
     - DB_HOST=db
+    - DJANGO_CORS_ORIGIN_WHITELIST=http://localhost:8000 http://localhost:3000
     - DRIVEBC_ROUTE_PLANNER_API_AUTH_KEY=GIPS68ey7YBSIs22RPYJo2lGZ1ASxfSf
     - REDIS_HOST=drivebc_redis
   stdin_open: true
