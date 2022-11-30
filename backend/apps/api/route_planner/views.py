@@ -80,7 +80,7 @@ class RouteViewSet(
         try:
             route_data = DrivebcClient().get_route_data(points=points_str)
         except (HTTPStatusError, RequestError) as e:
-            logger.error(f"An error occurred when syncing agency with CCIS: {e}")
+            logger.error(f"An error occurred when requesting a route: {e}")
             raise
         if not (route_data and route_data.get("is_route_found")):
             raise APIException("This route cannot be calculated")

@@ -1,8 +1,8 @@
 from apps.api.route_planner.views import (
+    EventDataAPIView,
     RouteViewSet,
     TravelAdvisoryMessageViewSet,
     WebcamDataAPIView,
-    EventDataAPIView,
 )
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter

@@ -35,6 +35,7 @@ class RouteSerializer(GeoFeatureModelSerializer):
         fields = (
             "id",
             "email",
+            "name",
             "start_point",
             "destination_point",
             "route_points",
