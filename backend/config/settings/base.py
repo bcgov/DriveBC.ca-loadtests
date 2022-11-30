@@ -31,13 +31,10 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
+    "rest_framework_gis",
 ]
 
-LOCAL_APPS = [
-    "apps.shared",
-    "apps.route_planner",
-    "apps.drivebc_api"
-]
+LOCAL_APPS = ["apps.shared", "apps.route_planner", "apps.drivebc_api"]
 
 # https://docs.djangoproject.com/en/4.0/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

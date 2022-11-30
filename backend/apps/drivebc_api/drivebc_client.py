@@ -1,10 +1,11 @@
 import logging
+from typing import Dict
 from urllib.parse import urljoin
 
 import httpx
+from apps.drivebc_api.constants import OPEN511, ROUTE_PLANNER, WEBCAMS
+from apps.drivebc_api.serializers import DrivebcRouteSerializer
 from django.conf import settings
-
-from apps.drivebc_api.constants import ROUTE_PLANNER, WEBCAMS, OPEN511
 
 logger = logging.getLogger("drivebc_api")
 
@@ -13,7 +14,7 @@ class DrivebcClient:
     """Client for DriveBC API."""
 
     def __init__(self):
-        self.resource_map = {
+        self.resource_map: Dict[str, dict] = {
             ROUTE_PLANNER: {
                 "base_url": settings.DRIVEBC_ROUTE_PLANNER_API_BASE_URL,
                 "auth_key": settings.DRIVEBC_ROUTE_PLANNER_API_AUTH_KEY,
@@ -29,13 +30,13 @@ class DrivebcClient:
     def _get_auth_headers(self, resource_type):
         auth_key = self.resource_map.get(resource_type, {}).get("auth_key")
         if auth_key:
-            return {"Authorization": auth_key}
+            return {"apiKey": auth_key}
         return {}
 
-    def _get_endpoint(self, resource_type, resource_name, *args):
+    def _get_endpoint(self, resource_type, resource_name):
         try:
-            base_url = self.resource_map.get(resource_type)["base_url"]
-            return urljoin(base_url, f'{resource_name}{"/".join(args)}')
+            base_url = self.resource_map.get(resource_type)["base_url"]  # type: ignore
+            return urljoin(base_url, f"{resource_name}")
         except KeyError:
             raise
 
@@ -67,3 +68,16 @@ class DrivebcClient:
         return self._process_get_request(
             endpoint, resource_type=ROUTE_PLANNER, params={}
         )
+
+    def get_route_data(self, points="", follow_truck=True):
+        endpoint = self._get_endpoint(
+            resource_type=ROUTE_PLANNER, resource_name="truck/route.json"
+        )
+        response_data = self._process_get_request(
+            endpoint,
+            resource_type=ROUTE_PLANNER,
+            params={"points": points, "followTruckRoute": follow_truck},
+        )
+        serializer = DrivebcRouteSerializer(data=response_data)
+        serializer.is_valid(raise_exception=True)
+        return serializer.validated_data

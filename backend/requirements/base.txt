@@ -1,6 +1,7 @@
 # Master branches
 Django==4.0.8
 djangorestframework==3.14.0
+djangorestframework-gis==1.0
 django-environ==0.9.0
 
 whitenoise==6.2.0
