@@ -1,4 +1,4 @@
-export default {
+const openstreetmap = {
   version: 8,
   sources: {
     osm: {
@@ -17,3 +17,5 @@ export default {
     },
   ],
 };
+
+export default openstreetmap;

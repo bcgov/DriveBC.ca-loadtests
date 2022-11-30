@@ -4,20 +4,18 @@ import { useDrag } from 'react-dnd';
 
 import './Pin.css';
 
-export default function Pin({ isDragging, role }) {
+export default function Pin({ role }) {
 
   const fill = role === 'start' ? '#003399' : '#009933';
 
-  const [{ opacity, getDropResult }, dragRef] = useDrag(
+  const [{ opacity }, dragRef] = useDrag(
     () => ({
       type: 'pin',
-      item: { role },
+      item: () => ({ role }), 
       collect: (monitor) => ({
         opacity: monitor.isDragging() ? 0.5 : 1
       }),
-      getDropResult: (monitor) => console.log(monitor),
     }),
-    []
   );
 
   return (

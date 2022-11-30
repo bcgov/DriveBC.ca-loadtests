@@ -13,7 +13,6 @@ function App() {
         <header>Drive BC</header>
         <Map />
       </div>
-        
     </DndProvider>
   );
 }

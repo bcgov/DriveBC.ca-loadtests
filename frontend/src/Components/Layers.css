@@ -1,5 +1,5 @@
 .open-layers, .layers {
-  top: 10rem;
+  top: 6rem;
   right: 2rem;
   position: absolute;
 }
@@ -18,8 +18,7 @@ button.close-layers {
 }
 
 .layers {
-  width: 20rem;
-  min-height: 20rem;
+  width: 14rem;
   background: white;
   border: solid 1px rgb(118, 118, 118);
   text-align: left;
