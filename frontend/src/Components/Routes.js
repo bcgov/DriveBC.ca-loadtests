@@ -5,7 +5,7 @@ import Pin from './Pin.js';
 import './Routes.css';
 
 
-export default function Routes({ open, setRoutesOpen, setStartToLocation }) {
+export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLocation }) {
 
   if (!open) {
     return (
@@ -67,7 +67,10 @@ export default function Routes({ open, setRoutesOpen, setStartToLocation }) {
           <input type="text" />
         </div>
         
-        <h3>+ Add Route</h3>
+        <button 
+          className='get-route'
+          onClick={routeHandler}
+        >+ Add Route</button>
       </div>
 
     </div>

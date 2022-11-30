@@ -1,3 +1,38 @@
+import { point } from '@turf/helpers';
+
+export async function getEvents() {
+  return fetch('http://localhost:8000/api/events/', { 
+    headers: {
+      'Content-Type': 'application/json'
+    } 
+  }).then((response) => response.json())
+    .then((data) => (
+      data.events.map((event) => {
+        let lat, lng;
+        if (event.geography.type === 'Point') {
+          lng = event.geography.coordinates[0];
+          lat = event.geography.coordinates[1];
+        } else {
+          [lng, lat] = event.geography.coordinates[0];
+        }
+
+        try {
+          return point([lng, lat], 
+            {
+              url: event.url,
+              id: event.id,
+              name: event.headline,
+              caption: event.severity,
+              coords: { lng, lat },
+            }, 
+            { id: event.id }
+          );
+        } catch (e) { console.log(e); console.log(event); }
+      })
+    ));
+}
+
+
 export default [
   {
     "url": "/events/drivebc.ca/153307",

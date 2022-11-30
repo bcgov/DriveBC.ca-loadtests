@@ -8,38 +8,11 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import Layers from './Layers.js';
 import Routes from './Routes.js';
 import osm from './styles/osm.js';
-import Events from './data/events.js';
-import Webcams from './data/webcams.js';
+import { getEvents } from './data/events.js';
+import { getWebcams } from './data/webcams.js';
 
 import './Map.css';
 
-
-const webcamPoints = Webcams.map((webcam) => {
-  const lng = webcam.location.longitude;
-  const lat = webcam.location.latitude;
-
-  return point([lng, lat], {
-      url: webcam.links.currentImage,
-      id: webcam.id,
-      name: webcam.camName,
-      caption: webcam.caption,
-      coords: { lng, lat },
-  }, { id: webcam.id })
-})
-const webcamsGeoJson = featureCollection(webcamPoints);
-
-const eventsPoints = Events.map((event) => {
-  const [lng, lat] = event.geography.coordinates[0];
-
-  return point([lng, lat], {
-      url: event.url,
-      id: event.id,
-      name: event.headline,
-      caption: event.severity,
-      coords: { lng, lat },
-  }, { id: event.id })
-})
-const eventsGeoJson = featureCollection(eventsPoints);
 
 export default function Map(){
   const mapContainer = useRef(null);
@@ -50,9 +23,8 @@ export default function Map(){
   const lng = -123.1207;
   const lat = 49.2827;
   const zoom = 14; 
-  const [layersOpen, setLayersOpen] = useState(true);
-  const [routesOpen, setRoutesOpen] = useState(false);
-  const [webcamsVisible, setWebcamVisilibity] = useState(true);
+  const [layersOpen, setLayersOpen] = useState(false);
+  const [routesOpen, setRoutesOpen] = useState(true);
 
   const [{ isOver }, drop] = useDrop(
     () => ({
@@ -81,10 +53,16 @@ export default function Map(){
     start.remove();
     end.remove();
     window.map = map.current;
+    window.start = start;
+    window.end = end;
 
-    map.current.on('load', () => {
-      map.current.addSource('webcams-points', { type: 'geojson', data: webcamsGeoJson });
-      map.current.addSource('events-points', { type: 'geojson', data: eventsGeoJson });
+    map.current.on('load', async () => {
+      const campoints = await getWebcams();
+      const evpoints = await getEvents();
+      console.log(evpoints);
+      map.current.addSource('webcams-points', { type: 'geojson', data: featureCollection(campoints) });
+      map.current.addSource('events-points', { type: 'geojson', data: featureCollection(evpoints) });
+
       map.current.addLayer({
         'id': 'webcams',
         'type': 'circle',
@@ -142,6 +120,29 @@ export default function Map(){
     map.current.setLayoutProperty(layer, 'visibility', showLayer ? 'visible' : 'none');
   }
 
+  function routeHandler() {
+    if (!start.getLngLat() || !end.getLngLat()) {
+      console.log('start or end not set');
+      return;
+    }
+
+    fetch('http://localhost:8000/api/routes/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: "test@oxd.com",
+        name: "Primary route",
+        start_location: start.getLngLat(),
+        destination: end.getLngLat(),
+      })
+    }).then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+  }
+
   return (
     <div className="map-wrap" style={{ opacity: isOver ? 0.5 : 1 }} ref={drop}>
       <div ref={mapContainer} className="map" />
@@ -154,6 +155,7 @@ export default function Map(){
         open={routesOpen} 
         setRoutesOpen={toggleRoutes} 
         setStartToLocation={setStartToLocation} 
+        routeHandler={routeHandler}
       />
 
       <Layers 

@@ -5,4 +5,4 @@ set -o pipefail
 set -o nounset
 
 
-python manage.py run_huey --huey-verbose
+python manage.py run_huey

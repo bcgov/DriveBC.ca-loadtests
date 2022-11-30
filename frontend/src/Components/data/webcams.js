@@ -1,3 +1,27 @@
+import { point } from '@turf/helpers';
+
+export async function getWebcams() {
+  return fetch('http://localhost:8000/api/webcams/', { 
+    headers: {
+      'Content-Type': 'application/json'
+    } 
+  }).then((response) => response.json())
+    .then((data) => (
+      data.webcams.map((webcam) => (
+        point([webcam.location.longitude, webcam.location.latitude], {
+          url: webcam.links.currentImage,
+          id: webcam.id,
+          name: webcam.camName,
+          caption: webcam.caption,
+          coords: { 
+            lng: webcam.location.longitude, 
+            lat: webcam.location.latitude 
+          },
+        }, { id: webcam.id })
+      ))
+    ));
+}
+
 export default [
     {
         "links": {
