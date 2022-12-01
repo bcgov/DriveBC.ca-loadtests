@@ -9,6 +9,7 @@ import Advisory from './Advisory.js';
 import Layers from './Layers.js';
 import Routes from './Routes.js';
 import osm from './styles/osm.js';
+import mt from './styles/maptiler.js';
 import { getEvents } from './data/events.js';
 import { getWebcams } from './data/webcams.js';
 import { getAdvisories } from './data/advisories.js';
@@ -18,6 +19,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 import './Map.css';
+let start, end;
 
 
 export default function Map(){
@@ -27,10 +29,10 @@ export default function Map(){
   const lat = 50.113;
   const zoom = 7.5;
   const location = new maplibregl.Marker().setLngLat([lng, lat])
-  let start = new maplibregl.Marker({color: '#003399', draggable: true});
-  let end = new maplibregl.Marker({color: '#009933', draggable: true});
+  const start = new maplibregl.Marker({color: '#003399', draggable: true});
+  const end = new maplibregl.Marker({color: '#009933', draggable: true});
   const [layersOpen, setLayersOpen] = useState(false);
-  const [routesOpen, setRoutesOpen] = useState(true);
+  const [routesOpen, setRoutesOpen] = useState(false);
   const [advisories, setAdvisories] = useState([]);
 
   const [{ isOver }, drop] = useDrop(
@@ -39,19 +41,21 @@ export default function Map(){
       drop: (item, monitor) => {
         const { x, y } = monitor.getClientOffset();
         const { lat, lng } = map.current.unproject([x, y - 48]);
-        const pin = item.role === 'start' ? start : end;
-        console.log(lng, lat);  
-        pin.setLngLat([lng, lat]).addTo(map.current);
+        if (item.role === 'start') {
+          start.setLngLat([lng, lat]).addTo(map.current);
+        } else {
+          end.setLngLat([lng, lat]).addTo(map.current);
+        }
       }
     }),
     []
-  )
+  );
 
   useEffect(() => {
     if (map.current) return; //stops map from intializing more than once
     map.current = new maplibregl.Map({
       container: mapContainer.current,
-      style: osm,
+      style: 'https://api.maptiler.com/maps/streets-v2/style.json?key=AITV1LUU17CaN7lfvmfi',
       center: [lng, lat],
       zoom: zoom,
       maxZoom: 17,
@@ -61,8 +65,8 @@ export default function Map(){
     start.remove();
     end.remove();
     window.map = map.current;
-    // window.start = start;
-    // window.end = end;
+    window.start = start;
+    window.end = end;
 
     map.current.on('load', async () => {
       const campoints = await getWebcams();
@@ -140,12 +144,12 @@ export default function Map(){
           )
           .addTo(map.current);
       });        
-    })
 
-    let interval = setInterval(async() => {
-      const travalad = await getAdvisories();
-      setAdvisories(travalad);
-    }, 10000);
+      let interval = setInterval(async() => {
+        const travalad = await getAdvisories();
+        setAdvisories(travalad);
+      }, 10000);
+    })
 
   });
 
@@ -177,7 +181,7 @@ export default function Map(){
 
   function setStartToLocation() {
     if (!map.current) { return; }
-    start.setLngLat([lng, lat]).addTo(map.current);
+    window.start.setLngLat([lng, lat]).addTo(map.current);
   }
 
   function toggleLayer(layer, showLayer) {
@@ -185,7 +189,7 @@ export default function Map(){
   }
 
   function routeHandler(email) {
-    if (!start.getLngLat() || !end.getLngLat()) {
+    if (!window.start.getLngLat() || !window.end.getLngLat()) {
       console.log('start or end not set');
       console.log(start.getLngLat());
       console.log(end.getLngLat());
@@ -193,17 +197,17 @@ export default function Map(){
     }
     
     if (!email) {
-      console.log('no email provided');
-      return; 
+      email = 'test@oxd.com';
     }
+
     fetch('http://localhost:8000/api/routes/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email,
         name: "Primary route",
-        start_location: start.getLngLat(),
-        destination: end.getLngLat(),
+        start_location: window.start.getLngLat(),
+        destination: window.end.getLngLat(),
       })
     }).then((response) => {
       if (response.status == 201) {
