@@ -1,15 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useDrop } from 'react-dnd';
 
-import { feature, featureCollection, point } from '@turf/helpers';
+import { featureCollection } from '@turf/helpers';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 import Advisory from './Advisory.js';
 import Layers from './Layers.js';
 import Routes from './Routes.js';
-import osm from './styles/osm.js';
-import mt from './styles/maptiler.js';
 import { getEvents } from './data/events.js';
 import { getWebcams } from './data/webcams.js';
 import { getAdvisories } from './data/advisories.js';
@@ -19,7 +17,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationArrow, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 import './Map.css';
-let start, end;
 
 
 export default function Map(){
@@ -28,7 +25,6 @@ export default function Map(){
   const lng = -120.7862;
   const lat = 50.113;
   const zoom = 7.5;
-  const location = new maplibregl.Marker().setLngLat([lng, lat])
   const start = new maplibregl.Marker({color: '#003399', draggable: true});
   const end = new maplibregl.Marker({color: '#009933', draggable: true});
   const [layersOpen, setLayersOpen] = useState(false);
@@ -61,7 +57,6 @@ export default function Map(){
       maxZoom: 17,
       minZoom: 1,
     });
-    location.addTo(map.current);
     start.remove();
     end.remove();
     window.map = map.current;
@@ -203,6 +198,8 @@ export default function Map(){
       ];
       map.current.setZoom(12);
       map.current.setCenter(pos);
+
+      // see comment in routeHandler for why we're using window.start
       window.start.setLngLat(pos).addTo(map.current);
     });
 
@@ -213,6 +210,17 @@ export default function Map(){
   }
 
   function routeHandler(email) {
+    /* FIXME: We're using window.start/end everywhere for now because of odd scoping 
+     * interactions between lexical start/end and the resulting marker in the map.  Despite 
+     * the fact that all instances in Map.js should be the declared instances above, we 
+     * would frequently see that start/end here have no lat/lng (while verifying in the
+     * console that they do).  In particular, the addition of setInterval above for travel
+     * advisories would cause the local references to find empty markers and fail to 
+     * find a route.  Even without that enabled, starting with the routes dialog closed
+     * would cause the same failure.  Using window as an authoritative global scope seems
+     * to fix this, but the proper solution would likely rely more upon using a maplibre
+     * map layer to hold the pins.  
+     */
     if (!window.start.getLngLat() || !window.end.getLngLat()) {
       console.log('start or end not set');
       console.log(start.getLngLat());
@@ -239,11 +247,12 @@ export default function Map(){
       } else {
         alert('Unable to calculate route. Please try again.');
       }
-    }).then((data) => { console.log(data); if (data) { map.current.getSource('routed').setData(data) } })
-      .catch((err) => {
-        console.log(err);
-        alert('Unable to calculate route. Please try again.');
-      });
+    }).then((data) => { 
+      if (data) { map.current.getSource('routed').setData(data) } 
+    }).catch((err) => {
+      console.log(err);
+      alert('Unable to calculate route. Please try again.');
+    });
   }
 
   return (
