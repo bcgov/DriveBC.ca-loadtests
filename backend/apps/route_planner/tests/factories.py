@@ -24,7 +24,7 @@ class FuzzyLineString(BaseFuzzyAttribute):
     def fuzz(self):
         x = [random.uniform(-180.0, 180.0), random.uniform(-90.0, 90.0)]
         y = [random.uniform(-180.0, 180.0), random.uniform(-90.0, 90.0)]
-        return LineString([[x, y]])
+        return LineString([x, y])
 
 
 class TravelAdvisoryMessageFactory(factory.django.DjangoModelFactory):
@@ -38,6 +38,7 @@ class TravelAdvisoryMessageFactory(factory.django.DjangoModelFactory):
 
 
 class RouteFactory(factory.django.DjangoModelFactory):
+    name = factory.Faker("title")
     email = factory.Faker("email")
     start_point = FuzzyPoint()
     destination_point = FuzzyPoint()
