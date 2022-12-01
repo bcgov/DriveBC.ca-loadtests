@@ -2,6 +2,8 @@ import React from 'react';
 
 import videoIcon from '../assets/video-solid.png';
 import eventIcon from '../assets/exclamation-triangle-solid.png';
+import map from '../assets/map.png';
+import terrain from '../assets/terrain.png';
 import './Layers.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLayerGroup, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -29,12 +31,12 @@ export default function Layers({ open, setLayersOpen, toggleLayer}) {
 
       <div className="layers-select">
         <div className="panel">
-          <div className="icon"></div>
+          <img className='map-image' src={map} alt="Map" />
           <div>Map</div>
         </div>
 
         <div className="panel">
-          <div className="icon"></div>
+          <img className='map-image' src={terrain} alt="Terrain" />
           <div>Terrain</div>
         </div>
       </div>
