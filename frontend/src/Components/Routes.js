@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import Pin from './Pin.js';
 
@@ -8,6 +8,8 @@ import { faLocationArrow, faPlus, faXmark } from '@fortawesome/free-solid-svg-ic
 
 
 export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLocation }) {
+
+  const inputRef = useRef(null)
 
   if (!open) {
     return (
@@ -64,12 +66,12 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
         <p>Notify me of any new road events along this route.</p>
 
         <div>
-          <input className="form-route text_input" type="text" placeholder="Email address"/>
+          <input className="form-route text_input" type="text" ref={inputRef} placeholder="Email address"/>
         </div>
 
         <button
           className='BC-Gov-PrimaryButton get-route'
-          onClick={routeHandler}
+          onClick={() => routeHandler(inputRef.current.value)}
         ><FontAwesomeIcon icon={faPlus} /> Add Route</button>
       </div>
 

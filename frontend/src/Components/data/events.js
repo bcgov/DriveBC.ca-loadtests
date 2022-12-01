@@ -17,16 +17,7 @@ export async function getEvents() {
         }
 
         try {
-          return point([lng, lat], 
-            {
-              url: event.url,
-              id: event.id,
-              name: event.headline,
-              caption: event.severity,
-              coords: { lng, lat },
-            }, 
-            { id: event.id }
-          );
+          return point([lng, lat], event, { id: event.id });
         } catch (e) { console.log(e); console.log(event); }
       })
     ));

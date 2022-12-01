@@ -23,12 +23,12 @@ import './Map.css';
 export default function Map(){
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const location = new maplibregl.Marker().setLngLat([-123.1207, 49.2827])
-  const start = new maplibregl.Marker({color: '#003399', draggable: true});
-  const end = new maplibregl.Marker({color: '#009933', draggable: true});
   const lng = -120.7862;
   const lat = 50.113;
   const zoom = 7.5;
+  const location = new maplibregl.Marker().setLngLat([lng, lat])
+  let start = new maplibregl.Marker({color: '#003399', draggable: true});
+  let end = new maplibregl.Marker({color: '#009933', draggable: true});
   const [layersOpen, setLayersOpen] = useState(false);
   const [routesOpen, setRoutesOpen] = useState(true);
   const [advisories, setAdvisories] = useState([]);
@@ -40,6 +40,7 @@ export default function Map(){
         const { x, y } = monitor.getClientOffset();
         const { lat, lng } = map.current.unproject([x, y - 48]);
         const pin = item.role === 'start' ? start : end;
+        console.log(lng, lat);  
         pin.setLngLat([lng, lat]).addTo(map.current);
       }
     }),
@@ -60,8 +61,8 @@ export default function Map(){
     start.remove();
     end.remove();
     window.map = map.current;
-    window.start = start;
-    window.end = end;
+    // window.start = start;
+    // window.end = end;
 
     map.current.on('load', async () => {
       const campoints = await getWebcams();
@@ -111,15 +112,34 @@ export default function Map(){
 
 
 
-      map.current.addLayer({
-        'id': 'route',
-        'type': 'line',
-        'source': 'routed',
-        'paint': {
-          'line-color': '#CC3300',
-          'line-width': 10,
-        }
-      });
+      map.current.on('click', 'webcams', (e) => {
+        const cam = e.features[0].properties;
+        new maplibregl.Popup({
+          maxWidth: '320px'
+        }).setLngLat(e.lngLat)
+          .setHTML(`
+            <div>
+              <h4>${cam.name}</h4>
+              <img src="${cam.url}" width='300'>
+              <p>${cam.caption}</p>
+            </div>`
+          )
+          .addTo(map.current);
+      });        
+
+      map.current.on('click', 'events', (e) => {
+        const event = e.features[0].properties;
+        new maplibregl.Popup({
+          maxWidth: '320px'
+        }).setLngLat(e.lngLat)
+          .setHTML(`
+            <div style='text-align: left'>
+              <h4>${event.headline}</h4>
+              <p>${event.description}</p>
+            </div>`
+          )
+          .addTo(map.current);
+      });        
     })
 
     let interval = setInterval(async() => {
@@ -164,27 +184,33 @@ export default function Map(){
     map.current.setLayoutProperty(layer, 'visibility', showLayer ? 'visible' : 'none');
   }
 
-  function routeHandler() {
+  function routeHandler(email) {
     if (!start.getLngLat() || !end.getLngLat()) {
       console.log('start or end not set');
+      console.log(start.getLngLat());
+      console.log(end.getLngLat());
       return;
     }
-
+    
+    if (!email) {
+      console.log('no email provided');
+      return; 
+    }
     fetch('http://localhost:8000/api/routes/', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        email: "test@oxd.com",
+        email,
         name: "Primary route",
         start_location: start.getLngLat(),
         destination: end.getLngLat(),
       })
-    }).then((response) => response.json())
-      .then((data) => {
-        map.current.getSource('routed').setData(data);
-      })
+    }).then((response) => {
+      if (response.status == 201) {
+        return response.json()
+      }
+    }).then((data) => { if (data) { map.current.getSource('routed').setData(data) } })
+      .catch((err) => console.log(err));
   }
 
   return (
