@@ -114,8 +114,16 @@ export default function Map(){
         },
       );
 
-
-
+      map.current.addLayer({
+        'id': 'route',
+        'type': 'line',
+        'source': 'routed',
+        'paint': {
+          'line-color': '#CC3300',
+          'line-width': 8,
+        }
+      });
+        
       map.current.on('click', 'webcams', (e) => {
         const cam = e.features[0].properties;
         new maplibregl.Popup({
@@ -213,7 +221,7 @@ export default function Map(){
       if (response.status == 201) {
         return response.json()
       }
-    }).then((data) => { if (data) { map.current.getSource('routed').setData(data) } })
+    }).then((data) => { console.log(data); if (data) { map.current.getSource('routed').setData(data) } })
       .catch((err) => console.log(err));
   }
 
