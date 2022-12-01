@@ -123,7 +123,7 @@ export default function Map(){
           'line-width': 8,
         }
       });
-        
+
       map.current.on('click', 'webcams', (e) => {
         const cam = e.features[0].properties;
         new maplibregl.Popup({
@@ -137,7 +137,7 @@ export default function Map(){
             </div>`
           )
           .addTo(map.current);
-      });        
+      });
 
       map.current.on('click', 'events', (e) => {
         const event = e.features[0].properties;
@@ -151,7 +151,7 @@ export default function Map(){
             </div>`
           )
           .addTo(map.current);
-      });        
+      });
 
       let interval = setInterval(async() => {
         const travalad = await getAdvisories();
@@ -173,8 +173,15 @@ export default function Map(){
 
   function myLocation() {
     if (!map.current) { return; }
-    map.current.setZoom(14);
-    map.current.setCenter({ lng, lat });
+    navigator.geolocation.getCurrentPosition(position => {
+      const pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      map.current.setZoom(14);
+      map.current.setCenter(pos);
+    });
+
   }
 
   function toggleLayers(openLayers) {
@@ -189,7 +196,16 @@ export default function Map(){
 
   function setStartToLocation() {
     if (!map.current) { return; }
-    window.start.setLngLat([lng, lat]).addTo(map.current);
+    navigator.geolocation.getCurrentPosition(position => {
+      const pos = [
+        position.coords.longitude,
+        position.coords.latitude
+      ];
+      map.current.setZoom(12);
+      map.current.setCenter(pos);
+      window.start.setLngLat(pos).addTo(map.current);
+    });
+
   }
 
   function toggleLayer(layer, showLayer) {
@@ -203,7 +219,7 @@ export default function Map(){
       console.log(end.getLngLat());
       return;
     }
-    
+
     if (!email) {
       email = 'test@oxd.com';
     }
