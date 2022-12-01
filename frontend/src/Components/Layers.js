@@ -27,7 +27,7 @@ export default function Layers({ open, setLayersOpen, toggleLayer}) {
         onClick={() => setLayersOpen(false)}
       ><FontAwesomeIcon icon={faXmark} /></button>
 
-      <h3>Base Layers</h3>
+      <h4>Base Layers</h4>
 
       <div className="layers-select">
         <div className="panel">
@@ -41,23 +41,25 @@ export default function Layers({ open, setLayersOpen, toggleLayer}) {
         </div>
       </div>
 
-      <h3>Features</h3>
+      <h4>Features</h4>
 
-      <div>
+      <div className="layer-item">
         <img className="map-icon" src={videoIcon} alt="Webcam Icon" />
         <input
-          type="checkbox"
+          type="checkbox" name="webcam" id="webcam"
           onChange={(e) => toggleLayer('webcams', e.target.checked)}
           defaultChecked
-        /> Webcam
+        />
+        <label for="webcam">Webcam</label>
       </div>
 
-      <div>
+      <div className="layer-item">
       <img className="map-icon" src={eventIcon} alt="Event Icon" />
-        <input type="checkbox"
+        <input type="checkbox" name="events" id="events"
           onChange={(e) => toggleLayer('events', e.target.checked)}
           defaultChecked
-        /> Road Events
+        />
+        <label for="events">Road Events</label>
       </div>
     </div>
   )

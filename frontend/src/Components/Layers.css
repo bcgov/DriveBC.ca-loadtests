@@ -24,7 +24,7 @@ button.close-layers {
   height: auto;
   background: none;
   border:none;
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 
 .layers {
@@ -34,6 +34,21 @@ button.close-layers {
   text-align: left;
   padding: 1rem;
   border-radius: 4px;
+}
+
+.layers h4 {
+  margin-bottom: 12px;
+}
+
+.layer-item {
+  margin-bottom: 8px;
+}
+.layer-item .map-icon {
+  margin-right: 12px;
+}
+
+.layer-item label {
+  margin-left: 4px;
 }
 
 .layers-select {
