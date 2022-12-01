@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
   user-select: none;
 }
 
@@ -64,8 +64,4 @@ header .banner {
 header .other {
   display: flex;
   flex-grow: 1;
-}
-
-
-.header-dbc {
 }

@@ -1,8 +1,9 @@
 
 .open-routes, .routes {
-  top: 2rem;
-  left: 2rem;
+  top: 3rem;
+  left: 60px;
   position: absolute;
+
 }
 
 .close-routes {
@@ -19,49 +20,85 @@
 }
 
 .routes {
-  width: 20rem;
+  width: 22rem;
   min-height: 20rem;
-  background: white;
+  padding: 20px;
+  background: #fff;
   border: solid 1px rgb(118, 118, 118);
 }
 
 .anchor {
-  width: 3rem; 
-  font-size: 2.5rem;
+  width: 40px;
+  font-size: 1.2rem;
   font-weight: bold;
-  padding-top: 1rem;    
+  text-align: center;
+  padding: 0;
+  margin: 20px 0 0 0;
+  height: 34px;
+  border-radius: 50%;
+  padding-top: 4px;
+  background: #003399;
+  color: #fff;
+}
+
+.anchor-b {
+  background: #009933;
 }
 
 .starting {
   display: flex;
 }
 
-.notification {
-  text-align: left;
-  padding-left: 3rem;
+.starting .text {
+  border-bottom: 1px solid rgb(118,118,118,0.25);
+  width: 100%;
+  padding-bottom: 24px;
+  margin-left: 12px;
+}
+.starting .text h3,
+.notification h3 {
+  margin-bottom: 6px;
 }
 
-h4 {
-  text-align: left;
+.starting .text p,
+.notification p {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.notification p {
+  margin-bottom: 12px;
 }
 
 .options {
   display: flex;
-  justify-content: center;
 }
 
 .option {
-  width: 5rem;
+  width: 100%;
+  font-size: 14px;
 }
 
-.pin-icon {
+.current-location-icon {
   font-size: 2rem;
   font-weight: bold;
+  width: 64px;
+  border: 3px dotted rgb(204, 204, 204);
+  height: 64px;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 11px;
+  cursor: grab;
 }
 
 .get-route {
-  height: auto;
   margin: 1rem 0;
-  position: inherit;
-  font-size: 1.5rem;
+  position: relative;
+  width: 100%;
+}
+
+.form-route.text_input {
+  font-size: 1em;
+  padding: 12px;
+  width: 100%;
 }

@@ -9,9 +9,9 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
 
   if (!open) {
     return (
-      <button className="open-routes"
+      <button className="open-routes BC-Gov-PrimaryButton"
         onClick={() => setRoutesOpen(true)}
-      >Add Route</button>
+      >+ Add Route</button>
     )
   }
 
@@ -22,53 +22,49 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
       >X</button>
 
       <div className="starting">
-        <div className="anchor">A</div>
+        <div className="anchor anchor-a">A</div>
 
         <div className="text">
-          <h4>Starting Location</h4>
-
+          <h3>Starting Location</h3>
+          <p>Mark your current location or drag and drop a marker pin.</p>
           <div className="options">
             <div className="option" onClick={setStartToLocation}>
-              <div className="pin-icon">&gt;</div>
-              <div>current location</div>
+              <div className="current-location-icon">&gt;</div>
             </div>
 
-            <span className="option">Or</span>
 
             <div className="option">
               <div><Pin role="start" /></div>
-              <div>Drop this point</div>
             </div>
           </div>
         </div>
       </div>
-
       <div className="starting">
-        <div className="anchor">B</div>
+        <div className="anchor anchor-b">B</div>
 
         <div className="text">
-          <h4>Destination</h4>
+          <h3>Destination</h3>
+          <p>Drag and drop a destination pin.</p>
 
           <div className="options">
             <div className="option">
               <div><Pin role="end" /></div>
-              <div>Drop this point</div>
+
             </div>
           </div>
         </div>
+
       </div>
-
       <div className="notification">
-        <h4>Notification Email</h4>
-
-        <p>Notify me of any new road events along this route</p>
+        <h3>Notification Email</h3>
+        <p>Notify me of any new road events along this route.</p>
 
         <div>
-          <input type="text" />
+          <input className="form-route text_input" type="text" placeholder="Email address"/>
         </div>
-        
-        <button 
-          className='get-route'
+
+        <button
+          className='BC-Gov-PrimaryButton get-route'
           onClick={routeHandler}
         >+ Add Route</button>
       </div>

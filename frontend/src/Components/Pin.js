@@ -8,10 +8,11 @@ export default function Pin({ role }) {
 
   const fill = role === 'start' ? '#003399' : '#009933';
 
+
   const [{ opacity }, dragRef] = useDrag(
     () => ({
       type: 'pin',
-      item: () => ({ role }), 
+      item: () => ({ role }),
       collect: (monitor) => ({
         opacity: monitor.isDragging() ? 0.5 : 1
       }),

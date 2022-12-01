@@ -4,8 +4,9 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 
 import './App.css';
 import Logo from './Components/Logo.js';
-
 import Map from './Components/Map.js';
+
+import '@bcgov/bc-sans/css/BCSans.css';
 
 function App() {
   return (
