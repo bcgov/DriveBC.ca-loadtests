@@ -17,7 +17,8 @@
     Visit <http://localhost:8000/admin/> (login required) and you
    should see the Django Admin.
 
-A default admin user account for testing purposes:
+A default admin user account for testing purposes is generated with the following 
+credentials (if this username doesn't exist already):
 
 * Username: `admin`
 * Password: `admin123`
@@ -41,7 +42,8 @@ pre-commit install --hook-type commit-msg
     Visit <http://localhost:8000/admin/> (login required) and you
     should see the Django Admin.
 
-A default admin user account for testing purposes:
+A default admin user account for testing purposes is generated with the following 
+credentials (if this username doesn't exist already):
 
 * Username: `admin`
 * Password: `admin123`
