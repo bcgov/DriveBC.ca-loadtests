@@ -83,7 +83,7 @@ A default admin user account for testing purposes is generated with the followin
 ### Coding Style and Conventions
 
 This project uses the [Black code
-style](https://black.readthedocs.io/en/stable/the_black_code_style.html).
+style](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html).
 It also checks syntax, including import order and complexity, via
 flake8. Linting is done via pre commit hooks installed using
 [pre-commit](https://pre-commit.com).
