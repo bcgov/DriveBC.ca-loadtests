@@ -19,19 +19,23 @@ button {
   user-select: none;
 }
 
-.my-location {
-  right: 2rem;
-  bottom: 10rem;
-}
-
-.zoom-in {
-  right: 2rem;
-  bottom: 6rem;
-}
-
-.zoom-out {
+.map-control {
+  position: absolute;
   right: 2rem;
   bottom: 2rem;
+  height: 200px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-
+.map-control button {
+  height: 54px;
+  width: 54px;
+  text-align: center;
+  position: relative;
+  margin: auto;
+  padding: initial;
+  background: #fff;
+}

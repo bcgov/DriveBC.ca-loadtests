@@ -7,7 +7,7 @@ export default function Layers({ open, setLayersOpen, toggleLayer}) {
 
   if (!open) {
     return (
-      <button className="open-layers"
+      <button className="open-layers BC-Gov-SecondaryButton"
         onClick={() => setLayersOpen(true)}
       >L</button>
     )
@@ -36,16 +36,16 @@ export default function Layers({ open, setLayersOpen, toggleLayer}) {
       <h3>Features</h3>
 
       <div>
-        <input 
-          type="checkbox" 
-          onChange={(e) => toggleLayer('webcams', e.target.checked)} 
+        <input
+          type="checkbox"
+          onChange={(e) => toggleLayer('webcams', e.target.checked)}
           defaultChecked
         /> Webcam
       </div>
 
       <div>
-        <input type="checkbox" 
-          onChange={(e) => toggleLayer('events', e.target.checked)} 
+        <input type="checkbox"
+          onChange={(e) => toggleLayer('events', e.target.checked)}
           defaultChecked
         /> Road Events
       </div>

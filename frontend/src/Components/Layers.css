@@ -1,7 +1,17 @@
 .open-layers, .layers {
   top: 3rem;
+  min-width: 3rem;
   right: 2rem;
   position: absolute;
+}
+
+.open-layers {
+  height: 54px;
+  width: 54px;
+  text-align: center;
+  margin: auto;
+  padding: initial;
+  background: #fff;
 }
 
 button.close-layers {

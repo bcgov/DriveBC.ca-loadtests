@@ -26,15 +26,15 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
 
         <div className="text">
           <h3>Starting Location</h3>
-          <p>Mark your current location or drag and drop a marker pin.</p>
+          <p>Drag and drop a pin or use your current location.</p>
           <div className="options">
-            <div className="option" onClick={setStartToLocation}>
-              <div className="current-location-icon">&gt;</div>
-            </div>
-
-
             <div className="option">
               <div><Pin role="start" /></div>
+              <div className="option-label">Drag and drop</div>
+            </div>
+            <div className="option" onClick={setStartToLocation}>
+              <div className="current-location-icon">&gt;</div>
+              <div className="option-label">Use my location</div>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
           <div className="options">
             <div className="option">
               <div><Pin role="end" /></div>
-
+              <div className="option-label">Drag and drop</div>
             </div>
           </div>
         </div>

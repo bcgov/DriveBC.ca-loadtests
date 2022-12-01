@@ -179,9 +179,11 @@ export default function Map(){
     <div className="map-wrap" style={{ opacity: isOver ? 0.5 : 1 }} ref={drop}>
       <div ref={mapContainer} className="map" />
 
-      <button className="my-location" onClick={myLocation}>&gt;</button>
-      <button className="zoom-in" onClick={zoomIn}>+</button>
-      <button className="zoom-out" onClick={zoomOut}>-</button>
+      <div className="map-control">
+        <button className="my-location BC-Gov-SecondaryButton" onClick={myLocation}>&gt;</button>
+        <button className="zoom-in BC-Gov-SecondaryButton" onClick={zoomIn}>+</button>
+        <button className="zoom-out BC-Gov-SecondaryButton" onClick={zoomOut}>-</button>
+      </div>
 
       <Routes
         open={routesOpen}

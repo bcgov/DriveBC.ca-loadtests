@@ -100,3 +100,31 @@ p {
 .BC-Gov-PrimaryButton:active {
   opacity: 1;
 }
+
+.BC-Gov-SecondaryButton {
+    background: none;
+    border-radius: 4px;
+    border: 2px solid #003366;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    Font-family: ‘BCSans’, ‘Noto Sans’, Verdana, Arial, sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: #003366;
+    }
+.BC-Gov-SecondaryButton:hover {
+    text-decoration: underline;
+    background-color: #335c85;
+    color: #FFFFFF;
+    }
+:focus {
+    outline-offset: 1px;
+    outline: 4px solid #3B99FC;
+    }
+.BC-Gov-SecondaryButton:active {
+    opacity: 1;
+    }
