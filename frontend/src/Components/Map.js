@@ -12,6 +12,8 @@ import osm from './styles/osm.js';
 import { getEvents } from './data/events.js';
 import { getWebcams } from './data/webcams.js';
 import { getAdvisories } from './data/advisories.js';
+import videoIcon from '../assets/video-solid.png';
+import eventIcon from '../assets/exclamation-triangle-solid.png';
 
 import './Map.css';
 
@@ -63,8 +65,34 @@ export default function Map(){
       const campoints = await getWebcams();
       const evpoints = await getEvents();
 
-      map.current.addSource('webcams-points', { type: 'geojson', data: featureCollection(campoints) });
-      map.current.addSource('events-points', { type: 'geojson', data: featureCollection(evpoints) });
+      map.current.loadImage(videoIcon, (error, image) => {
+        if (error) throw error;
+        map.current.addImage('video', image);
+        map.current.addSource('webcams-points', { type: 'geojson', data: featureCollection(campoints) });
+        map.current.addLayer({
+          'id': 'webcams',
+          'type': 'symbol',
+          'source': 'webcams-points',
+          'layout': {
+            'icon-image': 'video',
+          }
+        });
+      });
+
+      map.current.loadImage(eventIcon, (error, image) => {
+        if (error) throw error;
+        map.current.addImage('event', image);
+        map.current.addSource('events-points', { type: 'geojson', data: featureCollection(evpoints) });
+        map.current.addLayer({
+          'id': 'events',
+          'type': 'symbol',
+          'source': 'events-points',
+          'layout': {
+            'icon-image': 'event',
+          }
+        });
+      });
+
       map.current.addSource('routed',
         {
           type: 'geojson',
@@ -79,25 +107,7 @@ export default function Map(){
         },
       );
 
-      map.current.addLayer({
-        'id': 'webcams',
-        'type': 'circle',
-        'source': 'webcams-points',
-        'paint': {
-          'circle-radius': 6,
-          'circle-color': '#000099'
-        }
-      });
 
-      map.current.addLayer({
-        'id': 'events',
-        'type': 'circle',
-        'source': 'events-points',
-        'paint': {
-          'circle-radius': 10,
-          'circle-color': '#FFFF00'
-        }
-      });
 
       map.current.addLayer({
         'id': 'route',

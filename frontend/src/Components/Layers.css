@@ -54,3 +54,7 @@ button.close-layers {
   width: 5rem;
   border: solid 1px rgb(118, 118, 118);
 }
+
+img.map-icon {
+  width: 1rem;
+}

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import videoIcon from '../assets/video-solid.png';
+import eventIcon from '../assets/exclamation-triangle-solid.png';
 import './Layers.css';
 
 
@@ -36,6 +38,7 @@ export default function Layers({ open, setLayersOpen, toggleLayer}) {
       <h3>Features</h3>
 
       <div>
+        <img className="map-icon" src={videoIcon} alt="Webcam Icon" />
         <input
           type="checkbox"
           onChange={(e) => toggleLayer('webcams', e.target.checked)}
@@ -44,6 +47,7 @@ export default function Layers({ open, setLayersOpen, toggleLayer}) {
       </div>
 
       <div>
+      <img className="map-icon" src={eventIcon} alt="Event Icon" />
         <input type="checkbox"
           onChange={(e) => toggleLayer('events', e.target.checked)}
           defaultChecked
