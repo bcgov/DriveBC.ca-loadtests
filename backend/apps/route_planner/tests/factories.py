@@ -1,26 +1,30 @@
-import datetime
 import random
+from datetime import datetime
+
 import factory
-from factory import fuzzy
-from django.utils import timezone
+from apps.route_planner.models import Route, TravelAdvisoryMessage
 from django.contrib.auth.models import User
-from django.contrib.gis.geos import Point, LineString
+from django.contrib.gis.geos import LineString, Point
 from factory.fuzzy import BaseFuzzyAttribute
 
-from app.route_planner.models import (
-    TravelAdvisoryMessage,
-    Route,
-)
 
-class UserFactory(factory.DjangoModelFactory):
+class UserFactory(factory.django.DjangoModelFactory):
     FACTORY_FOR = User
     email = "admin@gmail.com"
     username = "admin"
     password = None
 
+
 class FuzzyPoint(BaseFuzzyAttribute):
     def fuzz(self):
-        return Point(random.uniform(-180.0, 180.0))
+        return Point(random.uniform(-180.0, 180.0), random.uniform(-90.0, 90.0))
+
+
+class FuzzyLineString(BaseFuzzyAttribute):
+    def fuzz(self):
+        x = [random.uniform(-180.0, 180.0), random.uniform(-90.0, 90.0)]
+        y = [random.uniform(-180.0, 180.0), random.uniform(-90.0, 90.0)]
+        return LineString([[x, y]])
 
 
 class TravelAdvisoryMessageFactory(factory.django.DjangoModelFactory):
@@ -35,9 +39,9 @@ class TravelAdvisoryMessageFactory(factory.django.DjangoModelFactory):
 
 class RouteFactory(factory.django.DjangoModelFactory):
     email = factory.Faker("email")
-    start_point = FuzzyPoint
-    destination_point = FuzzyPoint
-    route_points = LineString(FuzzyPoint, FuzzyPoint)
+    start_point = FuzzyPoint()
+    destination_point = FuzzyPoint()
+    route_points = FuzzyLineString()
     criteria = factory.fuzzy.FuzzyChoice(
         [choice[0] for choice in Route.CRITERIA_CHOICES]
     )
@@ -45,9 +49,8 @@ class RouteFactory(factory.django.DjangoModelFactory):
     distance_unit = factory.fuzzy.FuzzyChoice(
         [choice[0] for choice in Route.DISTANCE_UNIT_CHOICES]
     )
-    distance = factory.fuzzy.FuzzyFloat()
-    route_time = factory.fuzzy.FuzzyFloat()
-
+    distance = factory.fuzzy.FuzzyFloat(low=0)
+    route_time = factory.fuzzy.FuzzyFloat(low=0)
 
     class Meta:
         model = Route
