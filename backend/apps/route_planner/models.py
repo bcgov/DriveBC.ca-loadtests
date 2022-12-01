@@ -17,6 +17,9 @@ class TravelAdvisoryMessage(BaseModel):
     class Meta:
         verbose_name = "Travel Advisory Message"
 
+    def __str__(self):
+        return f"{self.title}"
+
     @admin.display(
         boolean=True,
         ordering="pub_date",

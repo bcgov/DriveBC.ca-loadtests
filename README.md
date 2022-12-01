@@ -15,10 +15,13 @@
 6. Run `docker-compose up -d --build` to build and start containers.
 7. The site should now be is available at <http://localhost:3000>.
     Visit <http://localhost:8000/admin/> (login required) and you
-    should see the Django Admin.
-8. Run `docker-compose run --rm django python manage.py createsuperuser` and
-   follow the prompts to create a superuser with admin access.
-   Use their username and password to access Django Admin.
+   should see the Django Admin.
+
+A default admin user account for testing purposes:
+
+* Username: `admin`
+* Password: `admin123`
+
 
 ## Development Setup (Windows)
 1. Install Docker and Docker Compose.
@@ -37,9 +40,11 @@ pre-commit install --hook-type commit-msg
 7. The site should now be is available at <http://localhost:3000>.
     Visit <http://localhost:8000/admin/> (login required) and you
     should see the Django Admin.
-8. Run `docker-compose run --rm django python manage.py createsuperuser` and
-   follow the prompts to create a superuser with admin access.
-   Use their username and password to access Django Admin.
+
+A default admin user account for testing purposes:
+
+* Username: `admin`
+* Password: `admin123`
 
 ## Docker and Network Architecture
 - `drivebc_backend`: Django web app. Restarts on code changes.
@@ -50,12 +55,6 @@ pre-commit install --hook-type commit-msg
 - `drivebc_worker`: Huey worker (task consumer for jobs like polling for events)
 
 ## Application Development
-
-
-### Makefile Shortcuts
-
-A number of common commands are aliased in `make`; run `make help` for
-details.
 
 
 ### Coding Style and Conventions
@@ -116,6 +115,16 @@ checks, use `make typecheck`.
 
 By default, tests are run using in memory SQLite.
 
+### Testing Email Notifications
+
+Mailhog SMTP server and local mail client for testing emails is available 
+at <http://localhost:8025>.
+
+#### Testing Event Notifications
+
+The app checks for newly added road events that occur along saved routes 
+every 5 minutes. If such events are found, email notifications are sent. They can be 
+checked at <http://localhost:8025>.
 
 ## Deployment
 1. TODO

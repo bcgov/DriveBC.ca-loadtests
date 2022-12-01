@@ -12,6 +12,9 @@ WORKDIR /app/backend
 COPY ./backend/requirements /app/backend/requirements
 RUN pip install -r requirements/development.txt
 
+COPY ./compose/backend/entrypoint /
+RUN sed -i 's/\r$//g' /entrypoint && chmod +x /entrypoint
+
 COPY ./compose/backend/start.sh /
 RUN sed -i 's/\r$//g' /start.sh && chmod +x /start.sh
 
@@ -21,6 +24,8 @@ RUN chmod +x /start-worker
 
 # Add the rest of the code
 COPY ./backend /app/backend
+
+ENTRYPOINT ["/entrypoint"]
 
 # Make port 8000 available for the app
 EXPOSE 8000
