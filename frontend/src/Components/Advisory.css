@@ -1,0 +1,60 @@
+
+.travel-advisory-panel {
+  padding: 15px;
+  background-color: #f5ca3d;
+  box-sizing: border-box;
+  position: absolute;
+  width: 12rem;
+  top: -48px;
+  right: 0;
+  cursor: pointer;
+}
+
+.travel-advisory-panel-full {
+  padding: 2rem;
+  background-color: #f5ca3d;
+  box-sizing: border-box;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  width: 20rem;
+  height: 80%;
+  text-align: left;
+}
+
+.travel-advisory-panel-content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.travel-advisory-header {
+  font-weight: bold;
+}
+
+.travel-advisory-header-count {
+  margin-left: 20px;
+}
+
+.travel-advisory-title {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.travel-advisory-desc {
+  white-space: pre-wrap;
+  margin-bottom: 20px;
+}
+
+.travel-advisory-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0;
+  min-width: 0;
+  line-height: 1.25rem;
+  height: auto;
+  background: none;
+  border:none;
+  font-size: 1rem;
+  cursor: pointer;
+}
