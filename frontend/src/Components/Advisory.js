@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
 import './Advisory.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTriangleExclamation, faXmark  } from '@fortawesome/free-solid-svg-icons';
 
 export default function Advisory({ advisories }) {
   const [open, setOpen] = useState(false);
@@ -12,13 +14,19 @@ export default function Advisory({ advisories }) {
   if(open) {
     return (
       <div className="travel-advisory-panel-full">
-        <div><button className="travel-advisory-close" onClick={() => togglePanel(false)}>X</button></div>
+        <div className="travel-advisory-panel-full-body">
+        <button className="travel-advisory-close" onClick={() => togglePanel(false)}>
+          <FontAwesomeIcon icon={faXmark} />
+        </button></div>
         <div className="travel-advisory-panel-content">
           {advisories.map((item, index) => {
-            return <div key={item.id}>
+            return <div className="travel-advisory-item" key={item.id}>
               <div className="travel-advisory-header">
-                Travel Advisory
-                <span className="travel-advisory-header-count">{index + 1} of {advisories.length}</span>
+              <h4>
+                <FontAwesomeIcon icon={faTriangleExclamation} />
+                  Travel Advisory
+                </h4>
+                  <span className="travel-advisory-header-count">{index + 1} of {advisories.length}</span>
               </div>
               <div className="travel-advisory-title">{item.title}</div>
               <div className="travel-advisory-desc">{item.text}</div>
@@ -30,7 +38,7 @@ export default function Advisory({ advisories }) {
   } else {
     return (
       <div className="travel-advisory-panel" onClick={() => togglePanel(true)}>
-        <span className="hazard-icon"></span>Travel Advisory <span className="travel-advisory-panel-count">({advisories.length})</span>
+      <FontAwesomeIcon icon={faTriangleExclamation} />Travel Advisory <span className="travel-advisory-panel-count">({advisories.length})</span>
       </div>
     )
   }

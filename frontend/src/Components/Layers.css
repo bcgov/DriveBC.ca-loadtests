@@ -1,5 +1,5 @@
 .open-layers, .layers {
-  top: 3rem;
+  top: 5rem;
   min-width: 3rem;
   right: 2rem;
   position: absolute;
@@ -33,6 +33,7 @@ button.close-layers {
   border: solid 1px rgb(118, 118, 118);
   text-align: left;
   padding: 1rem;
+  border-radius: 4px;
 }
 
 .layers-select {
@@ -57,4 +58,11 @@ button.close-layers {
 
 img.map-icon {
   width: 1rem;
+}
+
+@media screen and (max-width: 729px) {
+  .open-layers, .layers {
+    top: 5rem;
+    right: 14px;
+  }
 }

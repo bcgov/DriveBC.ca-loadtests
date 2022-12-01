@@ -65,3 +65,14 @@ header .other {
   display: flex;
   flex-grow: 1;
 }
+
+@media screen and (max-width: 729px) {
+  header {
+    padding: 0 12px;
+  }
+
+  p {
+    font-size: 0.875em;
+    line-height: 1.4;
+  }
+}
