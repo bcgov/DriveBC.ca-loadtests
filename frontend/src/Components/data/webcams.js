@@ -1,10 +1,10 @@
 import { point } from '@turf/helpers';
 
 export async function getWebcams() {
-  return fetch('http://localhost:8000/api/webcams/', { 
+  return fetch('http://localhost:8000/api/webcams/', {
     headers: {
       'Content-Type': 'application/json'
-    } 
+    }
   }).then((response) => response.json())
     .then((data) => (
       data.webcams.map((webcam) => (
@@ -13,13 +13,16 @@ export async function getWebcams() {
           id: webcam.id,
           name: webcam.camName,
           caption: webcam.caption,
-          coords: { 
-            lng: webcam.location.longitude, 
-            lat: webcam.location.latitude 
+          coords: {
+            lng: webcam.location.longitude,
+            lat: webcam.location.latitude
           },
         }, { id: webcam.id })
       ))
-    ));
+    ))
+    .catch((error) => {
+        console.log(error);
+    });
 }
 
 export default [

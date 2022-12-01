@@ -8,7 +8,7 @@
 3. `cd drivebc-code-challenge`
 4. Run `docker-compose up -d --build` to build and start containers.
 5. The site should now be is available at <http://localhost:3000>.
-6. Visit <http://localhost:8000/admin/> and you should see the Django Admin (admin/admin123).
+6. Visit <http://localhost:8000/admin/> and you should see the DriveBC Admin (admin/admin123).
 
 ### Testing Email Notifications
 
@@ -31,7 +31,7 @@ The app checks for newly added road events that occur along saved routes every 5
 6. Run `docker-compose up -d --build` to build and start containers.
 7. The site should now be is available at <http://localhost:3000>.
     Visit <http://localhost:8000/admin/> (login required) and you
-   should see the Django Admin.
+   should see the DriveBC Admin.
 
 A default admin user account for testing purposes is generated with the following credentials (if this username doesn't exist already):
 
@@ -100,7 +100,7 @@ This project runs vulnerability scans on both the backend and frontend projects.
 * `Safety`: Checks python dependencies for security vulnerabilities.
 * `Audit`: Checks javascript dependencies for security vulnerabilities.
 
-NOTE: This current is run manually with `npm audit` but can be added to a build pipeline.
+NOTE: Currently is run manually with `npm audit` but can be added to a build pipeline.
 
 ### Git Workflow
 
@@ -131,9 +131,6 @@ jest. You can also run them directly with
 By default, the pytest tests run a reasonable subset of possible
 permissions checks. To run tests for most possible permissions cases,
 pass the `-m full_perms` argument.
-
-To generate Python test coverage, run `make coverage`. To run type
-checks, use `make typecheck`.
 
 By default, tests are run using in memory SQLite.
 

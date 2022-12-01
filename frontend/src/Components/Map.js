@@ -236,9 +236,14 @@ export default function Map(){
     }).then((response) => {
       if (response.status == 201) {
         return response.json()
+      } else {
+        alert('Unable to calculate route. Please try again.');
       }
     }).then((data) => { console.log(data); if (data) { map.current.getSource('routed').setData(data) } })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        alert('Unable to calculate route. Please try again.');
+      });
   }
 
   return (

@@ -1,10 +1,10 @@
 import { point } from '@turf/helpers';
 
 export async function getEvents() {
-  return fetch('http://localhost:8000/api/events/', { 
+  return fetch('http://localhost:8000/api/events/', {
     headers: {
       'Content-Type': 'application/json'
-    } 
+    }
   }).then((response) => response.json())
     .then((data) => (
       data.events.map((event) => {
@@ -20,7 +20,10 @@ export async function getEvents() {
           return point([lng, lat], event, { id: event.id });
         } catch (e) { console.log(e); console.log(event); }
       })
-    ));
+    ))
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 
@@ -118,7 +121,7 @@ export default [
         "id": "drivebc.ca/10"
       },
     ]
-  },  
+  },
   {
     "url": "/events/drivebc.ca/153307",
     "id": "drivebc.ca/153307",

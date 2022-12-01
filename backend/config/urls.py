@@ -3,6 +3,9 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views import defaults as default_views
 
+admin.sites.AdminSite.site_header = "DriveBC Admin"
+admin.sites.AdminSite.site_title = "DriveBC Admin"
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("apps.api.urls")),
