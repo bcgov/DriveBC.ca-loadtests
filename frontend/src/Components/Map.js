@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useDrop } from 'react-dnd';
 
-import { featureCollection, point } from '@turf/helpers';
+import { feature, featureCollection, point } from '@turf/helpers';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
@@ -62,14 +62,27 @@ export default function Map(){
       console.log(evpoints);
       map.current.addSource('webcams-points', { type: 'geojson', data: featureCollection(campoints) });
       map.current.addSource('events-points', { type: 'geojson', data: featureCollection(evpoints) });
+      map.current.addSource('routed', 
+        { 
+          type: 'geojson', 
+          data: {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              "type": "LineString",
+              "coordinates": []
+            }
+          },
+        },
+      );
 
       map.current.addLayer({
         'id': 'webcams',
         'type': 'circle',
         'source': 'webcams-points',
         'paint': {
-          'circle-radius': 10,
-          'circle-color': '#FF0000'
+          'circle-radius': 6,
+          'circle-color': '#000099'
         }
       });
 
@@ -80,6 +93,16 @@ export default function Map(){
         'paint': {
           'circle-radius': 10,
           'circle-color': '#FFFF00'
+        }
+      });
+
+      map.current.addLayer({
+        'id': 'route',
+        'type': 'line',
+        'source': 'routed',
+        'paint': {
+          'line-color': '#CC3300',
+          'line-width': 10,
         }
       });
     })
@@ -139,7 +162,7 @@ export default function Map(){
       })
     }).then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        map.current.getSource('routed').setData(data);
       })
   }
 
