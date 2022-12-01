@@ -5,11 +5,13 @@ import { feature, featureCollection, point } from '@turf/helpers';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
+import Advisory from './Advisory.js';
 import Layers from './Layers.js';
 import Routes from './Routes.js';
 import osm from './styles/osm.js';
 import { getEvents } from './data/events.js';
 import { getWebcams } from './data/webcams.js';
+import { getAdvisories } from './data/advisories.js';
 
 import './Map.css';
 
@@ -25,6 +27,7 @@ export default function Map(){
   const zoom = 7.5;
   const [layersOpen, setLayersOpen] = useState(false);
   const [routesOpen, setRoutesOpen] = useState(true);
+  const [advisories, setAdvisories] = useState([]);
 
   const [{ isOver }, drop] = useDrop(
     () => ({
@@ -59,12 +62,12 @@ export default function Map(){
     map.current.on('load', async () => {
       const campoints = await getWebcams();
       const evpoints = await getEvents();
-      console.log(evpoints);
+
       map.current.addSource('webcams-points', { type: 'geojson', data: featureCollection(campoints) });
       map.current.addSource('events-points', { type: 'geojson', data: featureCollection(evpoints) });
-      map.current.addSource('routed', 
-        { 
-          type: 'geojson', 
+      map.current.addSource('routed',
+        {
+          type: 'geojson',
           data: {
             type: "Feature",
             properties: {},
@@ -106,6 +109,12 @@ export default function Map(){
         }
       });
     })
+
+    let interval = setInterval(async() => {
+      const travalad = await getAdvisories();
+      setAdvisories(travalad);
+    }, 10000);
+
   });
 
   function zoomIn() {
@@ -186,6 +195,9 @@ export default function Map(){
         setLayersOpen={toggleLayers}
         toggleLayer={toggleLayer}
       />
+
+      {advisories.length > 0 ? <Advisory advisories={advisories} />: null}
+
     </div>
   );
 }
