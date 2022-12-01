@@ -1,25 +1,33 @@
 
 .travel-advisory-panel {
-  padding: 15px;
-  background-color: #f5ca3d;
+  padding: 16px;
+  background-color: #f9f1c6;
+  border: 1px solid #faebcc;
+  border-radius: 4px;
+  color: #6c4a00;
   box-sizing: border-box;
   position: absolute;
-  width: 12rem;
-  top: -48px;
+  font-weight: 700;
+  width: 30%;
+  top: -44px;
   right: 0;
   cursor: pointer;
+  z-index: 1001;
 }
 
 .travel-advisory-panel-full {
-  padding: 2rem;
-  background-color: #f5ca3d;
+  padding: 24px;
+  background-color: #f9f1c6;
+  border: 1px solid #faebcc;
+  color: #6c4a00;
   box-sizing: border-box;
   position: absolute;
-  top: 2rem;
-  left: 2rem;
-  width: 20rem;
-  height: 80%;
+  top: 1rem;
+  right: 0;
+  width: 30%;
+  height: 100%;
   text-align: left;
+  z-index: 1001;
 }
 
 .travel-advisory-panel-content {

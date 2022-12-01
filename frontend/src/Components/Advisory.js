@@ -30,7 +30,7 @@ export default function Advisory({ advisories }) {
   } else {
     return (
       <div className="travel-advisory-panel" onClick={() => togglePanel(true)}>
-        <span className="harzard-icon"></span>Travel Advisory <span className="travel-advisory-panel-count">({advisories.length})</span>
+        <span className="hazard-icon"></span>Travel Advisory <span className="travel-advisory-panel-count">({advisories.length})</span>
       </div>
     )
   }

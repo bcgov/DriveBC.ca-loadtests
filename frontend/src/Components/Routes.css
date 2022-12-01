@@ -3,7 +3,6 @@
   top: 3rem;
   left: 60px;
   position: absolute;
-
 }
 
 .close-routes {
@@ -22,10 +21,12 @@
 .routes {
   width: 22rem;
   min-height: 20rem;
+  border-radius: 4px;
   padding: 16px;
   background: #fff;
   border: solid 1px rgb(118, 118, 118);
 }
+
 
 .anchor {
   width: 40px;
@@ -112,4 +113,131 @@
   font-size: 1em;
   padding: 12px;
   width: 100%;
+}
+
+@media screen and (max-width: 729px) {
+  header {
+    padding: 0 12px;
+  }
+
+  p {
+    font-size: 0.875em;
+    line-height: 1.4;
+  }
+  .open-routes {
+    bottom: 2.1rem;
+    top: initial;
+    left: 14px;
+    position: absolute;
+  }
+
+  .routes {
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    top: initial;
+  }
+
+  .starting {
+    flex-direction: column;
+  }
+
+  .starting .text {
+    margin-left: 0;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+
+  .starting .text h3,
+  .notification h3 {
+    margin-top: 8px;
+  }
+
+  .options {
+    flex-direction: row-reverse;
+    margin-top: -22px;
+  }
+
+  .option-label {
+    text-align: center;
+  }
+  .option {
+    margin-right: 12px;
+  }
+  .option:first-child {
+    margin-right: 0;
+  }
+
+  .anchor {
+    width: 30px;
+    height: 30px;
+    padding-top: 3px;
+    margin: 10px 0 0;
+  }
+
+  .starting .panel-text-group {
+    width: 40%;
+  }
+  .starting .panel-text-group p {
+    display: none;
+  }
+  .notification .panel-text-group {
+    width: 100%;
+  }
+
+  .text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .current-location-icon {
+    font-size: 2rem;
+    font-weight: bold;
+    width: 48px;
+    border: 3px solid rgb(204, 204, 204);
+    height: 48px;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 2px;
+    cursor: grab;
+  }
+
+  .pin {
+    background: none;
+    width: 48px;
+    border: 3px dotted rgb(204, 204, 204);
+    height: 48px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: grab;
+    padding-top: 2px;
+  }
+
+  .pin svg {
+    width: 22px;
+  }
+
+  .open-layers {
+    top: 5rem;
+    right: 14px;
+  }
+
+  /* .map-control in maps.css */
+
+  .travel-advisory-panel {
+    width: 100%;
+    top: 16px;
+    left: 0;
+    right: initial;
+    border-radius: 0;
+  }
+
+  .travel-advisory-panel-full {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    top: 17px;
+    right: initial;
+  }
 }

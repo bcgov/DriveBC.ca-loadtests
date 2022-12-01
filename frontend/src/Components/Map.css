@@ -39,3 +39,9 @@ button {
   padding: initial;
   background: #fff;
 }
+
+@media screen and (max-width: 729px) {
+  .map-control {
+    right: 14px;
+  }
+}

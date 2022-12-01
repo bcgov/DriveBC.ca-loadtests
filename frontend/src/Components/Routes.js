@@ -29,8 +29,10 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
         <div className="anchor anchor-a">A</div>
 
         <div className="text">
-          <h3>Starting Location</h3>
-          <p>Drag and drop a pin or use your current location.</p>
+          <div className="panel-text-group">
+            <h3>Starting Location</h3>
+            <p>Drag and drop a pin or use your current location.</p>
+          </div>
           <div className="options">
             <div className="option">
               <div><Pin role="start" /></div>
@@ -49,8 +51,10 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
         <div className="anchor anchor-b">B</div>
 
         <div className="text">
-          <h3>Destination</h3>
-          <p>Drag and drop a destination pin.</p>
+          <div className="panel-text-group">
+            <h3>Destination</h3>
+            <p>Drag and drop a destination pin.</p>
+          </div>
 
           <div className="options">
             <div className="option">
@@ -62,8 +66,10 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
 
       </div>
       <div className="notification">
-        <h3>Notification Email</h3>
-        <p>Notify me of any new road events along this route.</p>
+        <div className="panel-text-group">
+          <h3>Notification Email</h3>
+          <p>Notify me of any new road events along this route.</p>
+        </div>
 
         <div>
           <input className="form-route text_input" type="text" ref={inputRef} placeholder="Email address"/>
