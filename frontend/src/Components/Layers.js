@@ -3,6 +3,8 @@ import React from 'react';
 import videoIcon from '../assets/video-solid.png';
 import eventIcon from '../assets/exclamation-triangle-solid.png';
 import './Layers.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Layers({ open, setLayersOpen, toggleLayer}) {
@@ -11,7 +13,9 @@ export default function Layers({ open, setLayersOpen, toggleLayer}) {
     return (
       <button className="open-layers BC-Gov-SecondaryButton"
         onClick={() => setLayersOpen(true)}
-      >L</button>
+      >
+        <FontAwesomeIcon icon={faLayerGroup} />
+      </button>
     )
   }
 
