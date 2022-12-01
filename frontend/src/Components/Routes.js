@@ -4,7 +4,7 @@ import Pin from './Pin.js';
 
 import './Routes.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
+import { faLocationArrow, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLocation }) {
@@ -13,7 +13,7 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
     return (
       <button className="open-routes BC-Gov-PrimaryButton"
         onClick={() => setRoutesOpen(true)}
-      >+ Add Route</button>
+      ><FontAwesomeIcon icon={faPlus} /> Add Route</button>
     )
   }
 
@@ -21,7 +21,7 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
     <div className="routes">
       <button className="close-routes"
         onClick={() => setRoutesOpen(false)}
-      >X</button>
+      ><FontAwesomeIcon icon={faXmark} /></button>
 
       <div className="starting">
         <div className="anchor anchor-a">A</div>
@@ -36,7 +36,7 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
             </div>
             <div className="option" onClick={setStartToLocation}>
               <div className="current-location-icon">
-              <FontAwesomeIcon icon={faLocationArrow} />
+                <FontAwesomeIcon icon={faLocationArrow} />
               </div>
               <div className="option-label">Use my location</div>
             </div>
@@ -70,7 +70,7 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
         <button
           className='BC-Gov-PrimaryButton get-route'
           onClick={routeHandler}
-        >+ Add Route</button>
+        ><FontAwesomeIcon icon={faPlus} /> Add Route</button>
       </div>
 
     </div>

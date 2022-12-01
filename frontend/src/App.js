@@ -13,12 +13,12 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       <div className="App">
         <header>
-          <div class="banner">
+          <div className="banner">
             <a href="https://gov.bc.ca">
             <Logo className="logo" />
             </a>
           </div>
-          <div class="other">
+          <div className="other">
             <h2>DriveBC</h2>
           </div>
         </header>

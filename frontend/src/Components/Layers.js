@@ -4,7 +4,7 @@ import videoIcon from '../assets/video-solid.png';
 import eventIcon from '../assets/exclamation-triangle-solid.png';
 import './Layers.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { faLayerGroup, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Layers({ open, setLayersOpen, toggleLayer}) {
@@ -23,7 +23,7 @@ export default function Layers({ open, setLayersOpen, toggleLayer}) {
     <div className="layers">
       <button className="close-layers"
         onClick={() => setLayersOpen(false)}
-      >X</button>
+      ><FontAwesomeIcon icon={faXmark} /></button>
 
       <h3>Base Layers</h3>
 
