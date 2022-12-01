@@ -119,7 +119,7 @@ export default function Map(){
         'type': 'line',
         'source': 'routed',
         'paint': {
-          'line-color': '#CC3300',
+          'line-color': '#004eff',
           'line-width': 8,
         }
       });
