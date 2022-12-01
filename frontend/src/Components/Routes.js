@@ -3,6 +3,8 @@ import React from 'react';
 import Pin from './Pin.js';
 
 import './Routes.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 
 
 export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLocation }) {
@@ -33,7 +35,9 @@ export default function Routes({ open, routeHandler, setRoutesOpen, setStartToLo
               <div className="option-label">Drag and drop</div>
             </div>
             <div className="option" onClick={setStartToLocation}>
-              <div className="current-location-icon">&gt;</div>
+              <div className="current-location-icon">
+              <FontAwesomeIcon icon={faLocationArrow} />
+              </div>
               <div className="option-label">Use my location</div>
             </div>
           </div>

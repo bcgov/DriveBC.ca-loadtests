@@ -14,6 +14,8 @@ import { getWebcams } from './data/webcams.js';
 import { getAdvisories } from './data/advisories.js';
 import videoIcon from '../assets/video-solid.png';
 import eventIcon from '../assets/exclamation-triangle-solid.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationArrow, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 import './Map.css';
 
@@ -190,9 +192,15 @@ export default function Map(){
       <div ref={mapContainer} className="map" />
 
       <div className="map-control">
-        <button className="my-location BC-Gov-SecondaryButton" onClick={myLocation}>&gt;</button>
-        <button className="zoom-in BC-Gov-SecondaryButton" onClick={zoomIn}>+</button>
-        <button className="zoom-out BC-Gov-SecondaryButton" onClick={zoomOut}>-</button>
+        <button className="my-location BC-Gov-SecondaryButton" onClick={myLocation}>
+          <FontAwesomeIcon icon={faLocationArrow} />
+        </button>
+        <button className="zoom-in BC-Gov-SecondaryButton" onClick={zoomIn}>
+          <FontAwesomeIcon icon={faPlus} />
+        </button>
+        <button className="zoom-out BC-Gov-SecondaryButton" onClick={zoomOut}>
+          <FontAwesomeIcon icon={faMinus} />
+        </button>
       </div>
 
       <Routes

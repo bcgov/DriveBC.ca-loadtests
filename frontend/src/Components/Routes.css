@@ -98,6 +98,10 @@
   cursor: grab;
 }
 
+.fa-location-arrow {
+  color: #003399;
+}
+
 .get-route {
   margin: 1rem 0;
   position: relative;
