@@ -1,0 +1,1 @@
+We need the reports/ folder to exist to write report files.
