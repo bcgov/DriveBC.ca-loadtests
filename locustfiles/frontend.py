@@ -1,7 +1,7 @@
-from locust import HttpUser, LoadTestShape, task, events, between
+from locust import FastHttpUser, LoadTestShape, task, events, between
 
 
-class DriveBcUser(HttpUser):
+class DriveBcUser(FastHttpUser):
     wait_time = between(1, 5)
 
     @task
