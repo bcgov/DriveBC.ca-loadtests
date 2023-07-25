@@ -9,9 +9,9 @@ This repository is for developing and executing load testing scripts against the
   - [Locust documentation](#locust-documentation)
   - [Usage](#usage)
     - [Examples:](#examples)
-      - [WebUI (single):](#webui-single)
-      - [Headless (single):](#headless-single)
-      - [WebUI (master - workers)](#webui-master---workers)
+      - [WebUI, Single Thread:](#webui-single-thread)
+      - [Headless, Single Thread:](#headless-single-thread)
+      - [Headless, Distributed](#headless-distributed)
         - [Master Terminal:](#master-terminal)
         - [Worker Terminals:](#worker-terminals)
 
@@ -31,12 +31,12 @@ locust -f <testfile>.py -H <target URL(:target port)>
 locust -f frontend.py -H https://drivebc-frontend-c59ecc-test.apps.silver.devops.gov.bc.ca
 ```
 
-#### WebUI (single):
+#### WebUI, Single Thread:
 ```bash
 locust -f locustfiles --users 1000 --spawn-rate 1 -H https://drivebc-frontend-c59ecc-test.apps.silver.devops.gov.bc.ca
 ```
 
-#### Headless (single):
+#### Headless, Single Thread:
 ```bash
 locust -f locustfiles --headless --users 1000 --spawn-rate 1 -t 2m -H https://drivebc-frontend-c59ecc-test.apps.silver.devops.gov.bc.ca --html ./reports/frontend_report.html
 ```
@@ -49,7 +49,7 @@ export TARGET_HOST="https://drivebc-frontend-c59ecc-test.apps.silver.devops.gov.
 locust -f locustfiles --headless --users 1000 --spawn-rate 1 -t 2m -H $TARGET_HOST --html ./reports/frontend_report.html
 ```
 
-#### WebUI (master - workers)
+#### Headless, Distributed
 ##### Master Terminal:
 ```bash
 locust -f locustfiles --H https://drivebc-frontend-c59ecc-test.apps.silver.devops.gov.bc.ca/ --headless --master --expect-workers=1 -u 1000 -r 1 -t 20 --html ./reports/frontend_report.html
