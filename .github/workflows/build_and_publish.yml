@@ -1,0 +1,37 @@
+name: Build and publish image to openshift
+
+on:
+#  push:
+#    branches: [ "main" ]
+#  pull_request:
+#    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    name: Build Docker image
+    environment: main
+
+    steps:
+
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: build backend
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: locust
+          tags: latest ${{ github.sha }}
+          labels: |
+            app=locust
+          containerfiles: ./Dockerfile
+
+      - name: push to registry
+        uses: redhat-actions/push-to-registry@v2.7
+        with:
+          image: locust
+          registry: ${{ secrets.REGISTRY }}
+          username: ${{ secrets.BUILDER_USERNAME }}
+          password: ${{ secrets.BUILDER_TOKEN }}
