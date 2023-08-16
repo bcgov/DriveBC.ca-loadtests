@@ -1,0 +1,49 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": { "type": "number" },
+      "links": {
+        "type": "object",
+        "properties": {
+          "imageSource": { "type": "string" },
+          "imageDisplay": { "type": "string" },
+          "imageThumbnail": { "type": "string" },
+          "currentImage": { "type": "string" },
+          "replayTheDay": { "type": "string" }
+        }
+      },
+      "name": { "type": "string" },
+      "caption": { "type": "string" },
+      "region": { "type": "number" },
+      "region_name": { "type": "string" },
+      "highway": { "type": "string" },
+      "highway_description": { "type": "string" },
+      "highway_group": { "type": "number" },
+      "highway_cam_order": { "type": "number" },
+      "location": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "coordinates": {
+            "type": "array",
+            "items": { "type": "number" }
+          }
+        }
+      },
+      "orientation": { "type": "string" },
+      "elevation": { "type": "number" },
+      "is_on": { "type": "boolean" },
+      "should_appear": { "type": "boolean" },
+      "is_new": { "type": "boolean" },
+      "is_on_demand": { "type": "boolean" },
+      "marked_stale": { "type": "boolean" },
+      "marked_delayed": { "type": "boolean" },
+      "last_update_attempt": { "type": ["null", "string"] },
+      "last_update_modified": { "type": ["null", "string"] },
+      "update_period_mean": { "type": "number" },
+      "update_period_stddev": { "type": "number" }
+    }
+  }
+}
