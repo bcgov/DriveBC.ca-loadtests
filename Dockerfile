@@ -3,7 +3,7 @@ FROM locustio/locust
 
 USER root
 RUN apt-get update
-RUN apt-get install -y jq vim procps less
+RUN apt-get install -y jq vim procps less curl
 
 WORKDIR /app
 
