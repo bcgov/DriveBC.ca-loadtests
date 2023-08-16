@@ -14,6 +14,7 @@ COPY start_worker.sh /start_worker.sh
 
 RUN mkdir /app/reports
 RUN chmod 777 /app/reports
+RUN chmod 755 /start_workers.sh
 
 EXPOSE 8089
 
