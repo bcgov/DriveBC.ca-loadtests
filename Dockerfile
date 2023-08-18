@@ -19,4 +19,4 @@ RUN chmod 755 /start_worker.sh
 EXPOSE 8089
 
 # ENTRYPOINT [ "/bin/sh", "-c", "trap : TERM INT; sleep infinity & wait" ]
-ENTRYPOINT locust --master -f $TEST_FILE
+ENTRYPOINT locust --master -f $TEST_FILE --loglevel WARNING
