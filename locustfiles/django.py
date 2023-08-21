@@ -4,7 +4,7 @@ from locust import FastHttpUser, task, events
 class DriveBcUser(FastHttpUser):
     @task
     def backend(self):
-        with self.client.get("/api/test/appcache/", catch_response=True) as response:
+        with self.client.get("/api/test/app/", catch_response=True) as response:
 
             try:
                 assert response.text.isdigit()
