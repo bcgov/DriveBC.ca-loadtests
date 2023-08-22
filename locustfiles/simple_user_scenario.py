@@ -1,5 +1,5 @@
 from locust import FastHttpUser, LoadTestShape, task, events, between
-from ..common.frontend_tasks import load_homepage
+from common.frontend_tasks import load_homepage
 
 
 class DriveBcUser(FastHttpUser):
