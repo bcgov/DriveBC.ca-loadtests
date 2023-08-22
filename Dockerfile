@@ -7,8 +7,10 @@ RUN apt-get install -y jq vim procps less curl
 
 WORKDIR /app
 
+RUN mkdir /app/common
 RUN mkdir /app/locustfiles
 
+COPY common /app/common
 COPY locustfiles /app/locustfiles
 COPY start_worker.sh /start_worker.sh
 
