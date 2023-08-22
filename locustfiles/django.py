@@ -9,6 +9,6 @@ class DriveBcUser(FastHttpUser):
             try:
                 assert response.text.isdigit()
             except AssertionError as err:
-                err = "Response type does not match"
+                err = f"Response type does not match '{response.text}'"
                 response.failure(err)
                 return False, err
