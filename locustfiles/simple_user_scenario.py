@@ -28,5 +28,5 @@ class DriveBcUser(FastHttpUser):
         # self.client.get("https://www.arcgis.com/sharing/rest/content/items/b1624fea73bd46c681fab55be53d96ae/resources/sprites/sprite-1668107067528@2x.png")
 
     @task
-    def webcams_page(self):
+    def events_page(self):
         self.client.get("/events-page")
