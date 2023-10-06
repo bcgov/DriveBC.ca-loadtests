@@ -18,5 +18,6 @@ class imageCacheLoader(FastHttpUser):
 
     @task
     def image_cache(self):
-        self.client.get(f"/webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageDisplay")
+        self.client.get(f"webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageDisplay")
+
 
