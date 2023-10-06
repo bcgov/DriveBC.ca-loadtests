@@ -9,9 +9,11 @@ WORKDIR /app
 
 RUN mkdir /app/common
 RUN mkdir /app/locustfiles
+RUN mkdir /app/data
 
 COPY common /app/common
 COPY locustfiles /app/locustfiles
+COPY data /app/data
 COPY start_worker.sh /start_worker.sh
 
 RUN mkdir /app/reports
