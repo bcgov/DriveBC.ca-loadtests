@@ -941,4 +941,12 @@ class imageCacheLoader(FastHttpUser):
     def image_cache(self):
         self.client.get(f"/webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageDisplay")
 
+        ## DEBUG calls. Turn these on to confirm path/asset validity.
 
+        # with self.client.get(f"/webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageDisplay", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
