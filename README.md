@@ -70,3 +70,11 @@ locust -f locustfiles -H $TARGET_HOST --headless --master --expect-workers=8 --h
 ```bash
 locust -f locustfiles --headless --worker
 ```
+
+### OpenShift Setup
+To set this up in a new OpenShift environment, ensure you have the following
+- ConfigMap
+- Deployment
+- Service
+- Route
+- Network Policys
