@@ -1,12 +1,200 @@
 from locust import FastHttpUser, LoadTestShape, task, events, between
-from common.frontend_tasks import load_homepage
 
 class DriveBcUser(FastHttpUser):
 
     @task
     def frontend(self):
-        load_homepage(self)
+        self.client.get("/")
+        self.client.get("/static/js/main.c5c875c7.js")
+        self.client.get("/static/css/main.171c839f.css")
+        self.client.get("/assets/axe.min.js.f5f67518.js")
+        self.client.get("/assets/content.js.8e6ff0c3.js")
+        self.client.get("/assets/SelectorHelper.js.839362d1.js")
+        self.client.get("/assets/issueTemplate.0ca855ef.js")
+        self.client.get("/assets/messages.87963852.js")
+        self.client.get("/assets/helper.9765f18a.js")
+        self.client.get("/assets/IGTRules.7ec0875c.js")
+        self.client.get("/assets/settings.a4a1891b.js")
+        self.client.get("/assets/v4.08a953c1.js")
+        self.client.get("/assets/_commonjsHelpers.712cc82f.js")
+        self.client.get("/src/runtime/injectGlobal.js")
+        self.client.get("/manifest.json")
+        self.client.get("/favicon.ico")
+        self.client.get("/api/cms/advisories/?")
+        self.client.get("/static/media/BCSans-Regular.0079ea8e42d4e81a13d2.woff")
+        self.client.get("/static/media/BCSans-Bold.252ecf87ea37c93b293c.woff")
+        self.client.get("/api/webcams/?")
+        self.client.get("/static/media/dbc-logo.db01b0c208d3fc8c9685639093aa724d.svg")
 
+        ## DEBUG calls. Turn these on to confirm path/asset validity.
+
+        # with self.client.get("/", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/static/js/main.c5c875c7.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/static/css/main.171c839f.css", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/assets/axe.min.js.f5f67518.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/assets/content.js.8e6ff0c3.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/assets/SelectorHelper.js.839362d1.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/assets/issueTemplate.0ca855ef.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/assets/messages.87963852.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/assets/helper.9765f18a.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/assets/IGTRules.7ec0875c.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/assets/settings.a4a1891b.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/assets/v4.08a953c1.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/assets/_commonjsHelpers.712cc82f.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/src/runtime/injectGlobal.js", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/manifest.json", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/favicon.ico", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/api/cms/advisories/?", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/static/media/BCSans-Regular.0079ea8e42d4e81a13d2.woff", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/static/media/BCSans-Bold.252ecf87ea37c93b293c.woff", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/api/webcams/?", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
+
+        # with self.client.get("/static/media/dbc-logo.db01b0c208d3fc8c9685639093aa724d.svg", catch_response=True) as response:
+        #     try:
+        #         assert response.status_code == 200
+        #     except AssertionError as err:
+        #         err = "Response type does not match"
+        #         response.failure(err)
+        #         return False, err
 
 # class StagesShape(LoadTestShape):
 #     """
