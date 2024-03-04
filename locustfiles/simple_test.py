@@ -2,9 +2,6 @@ from locust import FastHttpUser, task, between
 
 class QuickstartUser(FastHttpUser):
 
-    def on_start(self):
-        self.client.headers['User-Agent'] = "Mozilla/5.0"
-
     @task(1)
     def api(self):
         self.client.get("/api/webcams/")
