@@ -1,7 +1,31 @@
 from locust import FastHttpUser, task, between
 
-class QuickstartUser(FastHttpUser):
-#    wait_time = between(10, 15)
+class fullTestUser(FastHttpUser):
+    wait_time = between(30, 35)
+
+    @task()
+    def api(self):
+        self.client.get("/api/webcams/")
+        self.client.get("/api/events/")
+        self.client.get("/api/cms/ferries/")
+        self.client.get("/api/cms/advisories/")
+        self.client.get("/api/cms/bulletins/")
+        self.client.get("/api/webcams/330/")
+
+    @task()
+    def static(self):
+        self.client.get("/static/js/main.3995aa4e.js")
+        self.client.get("/static/css/main.cff652a0.css")
+        self.client.get("/favicon.ico")
+        self.client.get("/static/media/BCSans-Bold.252ecf87ea37c93b293c.woff")
+        self.client.get("/static/media/BCSans-Regular.0079ea8e42d4e81a13d2.woff")
+        self.client.get("/static/media/dbc-logo.db01b0c208d3fc8c9685639093aa724d.svg")
+        self.client.get("/static/media/BCHwyCrest1.3250c217efd2de2b79cf66242614ec2b.svg")
+        self.client.get("/static/media/BCHwyCrest.9291029e030864484ab6e32a1356dc1a.svg")
+        self.client.get("/static/media/colocated-camera.db3f3531300ceed4b5c080dc1ae007ff.svg")
+        self.client.get("/manifest.json")
+        self.client.get("/django-media/original_images/lytton.jpg")
+        self.client.get("/django-media/original_images/barnstonisland.jpg")
 
     @task()
     def cameras(self):
@@ -25,3 +49,4 @@ class QuickstartUser(FastHttpUser):
         self.client.get("/webcam/api/v1/webcams/109/imageSource")
         self.client.get("/webcam/api/v1/webcams/739/imageSource")
         self.client.get("/webcam/api/v1/webcams/703/imageSource")
+
