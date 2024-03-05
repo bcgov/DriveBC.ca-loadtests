@@ -1,7 +1,8 @@
+#Same as Quick_user_scenario, but adds a wait_time of 15-20 seconds since we assume user is moving around bit more slowly.
 from locust import FastHttpUser, task, between
 
 class fullTestUser(FastHttpUser):
-    wait_time = between(30, 35)
+    wait_time = between(15, 20)
 
     @task(10)
     def homepage(self):
