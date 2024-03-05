@@ -5,15 +5,15 @@ class DriveBcUser(FastHttpUser):
     @task
     def frontend(self):
         self.client.get("/")
-        self.client.get("/static/js/main.c5c875c7.js")
-        self.client.get("/static/css/main.171c839f.css")
+        self.client.get("/static/js/main.c462f54a.js")
+        self.client.get("/static/css/main.e088fd2e.css")
         self.client.get("/assets/axe.min.js.f5f67518.js")
-        self.client.get("/assets/content.js.8e6ff0c3.js")
+        self.client.get("/assets/content.js.4b3e743a.js")
         self.client.get("/assets/SelectorHelper.js.839362d1.js")
-        self.client.get("/assets/issueTemplate.0ca855ef.js")
-        self.client.get("/assets/messages.87963852.js")
-        self.client.get("/assets/helper.9765f18a.js")
-        self.client.get("/assets/IGTRules.7ec0875c.js")
+        self.client.get("/assets/issueTemplate.d5db62cd.js")
+        self.client.get("/assets/messages.31e9ecf6.js")
+        self.client.get("/assets/helper.8643157e.js")
+        self.client.get("/assets/ATRules.67f6a2fa.js")
         self.client.get("/assets/settings.a4a1891b.js")
         self.client.get("/assets/v4.08a953c1.js")
         self.client.get("/assets/_commonjsHelpers.712cc82f.js")
@@ -36,7 +36,7 @@ class DriveBcUser(FastHttpUser):
         #         response.failure(err)
         #         return False, err
 
-        # with self.client.get("/static/js/main.c5c875c7.js", catch_response=True) as response:
+        # with self.client.get("/static/js/main.c462f54a.js", catch_response=True) as response:
         #     try:
         #         assert response.status_code == 200
         #     except AssertionError as err:
@@ -44,7 +44,7 @@ class DriveBcUser(FastHttpUser):
         #         response.failure(err)
         #         return False, err
 
-        # with self.client.get("/static/css/main.171c839f.css", catch_response=True) as response:
+        # with self.client.get("/static/css/main.e088fd2e.css", catch_response=True) as response:
         #     try:
         #         assert response.status_code == 200
         #     except AssertionError as err:
@@ -60,7 +60,7 @@ class DriveBcUser(FastHttpUser):
         #         response.failure(err)
         #         return False, err
 
-        # with self.client.get("/assets/content.js.8e6ff0c3.js", catch_response=True) as response:
+        # with self.client.get("/assets/content.js.4b3e743a.js", catch_response=True) as response:
         #     try:
         #         assert response.status_code == 200
         #     except AssertionError as err:
@@ -76,7 +76,7 @@ class DriveBcUser(FastHttpUser):
         #         response.failure(err)
         #         return False, err
 
-        # with self.client.get("/assets/issueTemplate.0ca855ef.js", catch_response=True) as response:
+        # with self.client.get("/assets/issueTemplate.d5db62cd.js", catch_response=True) as response:
         #     try:
         #         assert response.status_code == 200
         #     except AssertionError as err:
@@ -84,7 +84,7 @@ class DriveBcUser(FastHttpUser):
         #         response.failure(err)
         #         return False, err
 
-        # with self.client.get("/assets/messages.87963852.js", catch_response=True) as response:
+        # with self.client.get("/assets/messages.31e9ecf6.js", catch_response=True) as response:
         #     try:
         #         assert response.status_code == 200
         #     except AssertionError as err:
@@ -92,7 +92,7 @@ class DriveBcUser(FastHttpUser):
         #         response.failure(err)
         #         return False, err
 
-        # with self.client.get("/assets/helper.9765f18a.js", catch_response=True) as response:
+        # with self.client.get("/assets/helper.8643157e.js", catch_response=True) as response:
         #     try:
         #         assert response.status_code == 200
         #     except AssertionError as err:
@@ -100,7 +100,7 @@ class DriveBcUser(FastHttpUser):
         #         response.failure(err)
         #         return False, err
 
-        # with self.client.get("/assets/IGTRules.7ec0875c.js", catch_response=True) as response:
+        # with self.client.get("/assets/ATRules.67f6a2fa.js", catch_response=True) as response:
         #     try:
         #         assert response.status_code == 200
         #     except AssertionError as err:
