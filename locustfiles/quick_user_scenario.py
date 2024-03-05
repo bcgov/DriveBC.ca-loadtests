@@ -5,8 +5,8 @@ class fullTestUser(FastHttpUser):
 
     @task(10)
     def homepage(self):
-        self.client.get("/static/js/main.3995aa4e.js")
-        self.client.get("/static/css/main.cff652a0.css")
+        self.client.get("/static/js/main.c462f54a.js")
+        self.client.get("/static/css/main.e088fd2e.css")
         self.client.get("/favicon.ico")
         self.client.get("/static/media/BCSans-Bold.252ecf87ea37c93b293c.woff")
         self.client.get("/static/media/BCSans-Regular.0079ea8e42d4e81a13d2.woff")
@@ -73,7 +73,7 @@ class fullTestUser(FastHttpUser):
         self.client.get("/api/cms/advisories/")
 
 
-    @task(2)
+    @task(1)
     def bulletins(self):
         self.client.get("/static/js/main.3995aa4e.js")
         self.client.get("/static/css/main.cff652a0.css")
