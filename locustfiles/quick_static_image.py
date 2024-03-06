@@ -4,7 +4,7 @@ from locust import FastHttpUser, task, between
 
 class fullTestUser(FastHttpUser):
 
-    @task()
+    @task(1)
     def static(self):
         self.client.get("/static/js/main.c462f54a.js")
         self.client.get("/static/css/main.e088fd2e.css")
@@ -17,7 +17,7 @@ class fullTestUser(FastHttpUser):
         self.client.get("/static/media/colocated-camera.db3f3531300ceed4b5c080dc1ae007ff.svg")
         self.client.get("/manifest.json")
 
-    @task()
+    @task(5)
     def cameras(self):
         self.client.get("/webcam/api/v1/webcams/719/imageSource")
         self.client.get("/webcam/api/v1/webcams/945/imageSource")
