@@ -19,7 +19,7 @@ Make sure you are logged in to [Azure Portal](https://portal.azure.com).
 
 Click the Deploy to Azure button (ctrl click to open it in new tab):
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fwmuldergov%2Fazure-locust%2Fmaster%2FmainTemplate.json
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fbcgov%2FDriveBC.ca-loadtests%2Fmain%2Fazure-locust%2FmainTemplate.json
 )
 
 NOTE: If you are cloning this code, the Deploy to Azure button is coded to point to the file in the source repo, so you will need to change it.
