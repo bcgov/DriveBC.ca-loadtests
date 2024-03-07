@@ -1,0 +1,73 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+  "handler": "Microsoft.Azure.CreateUIDef",
+  "version": "0.1.2-preview",
+  "parameters": {
+    "basics": [
+      {
+        "name": "instances",
+        "type": "Microsoft.Common.DropDown",
+        "label": "Number of workers",
+        "defaultValue": "18",
+        "toolTip": "Each worker uses 1 CPU",
+        "constraints": {
+          "allowedValues": [
+            {
+              "label": "1",
+              "value": 1
+            },
+            {
+              "label": "2",
+              "value": 2
+            },
+            {
+              "label": "3",
+              "value": 3
+            },
+            {
+              "label": "5",
+              "value": 5
+            },
+            {
+              "label": "10",
+              "value": 10
+            },
+            {
+              "label": "15",
+              "value": 15
+            },
+            {
+              "label": "20",
+              "value": 20
+            }
+          ],
+          "required": true
+        },
+        "visible": true
+      },
+      {
+        "name": "locustfile",
+        "type": "Microsoft.Common.FileUpload",
+        "label": "Locustfile (optional)",
+        "toolTip": "Upload locustfile.py. If empty, default will be used. You can change it later.",
+        "constraints": {
+          "required": false,
+          "accept": ".py,text/plain"
+        },
+        "options": {
+          "multiple": false,
+          "uploadMode": "file",
+          "openMode": "binary",
+          "encoding": "UTF-8"
+        },
+        "visible": true
+      }
+    ],
+    "steps": [],
+    "outputs": {
+      "location": "[location()]",
+      "instances": "[steps('basics').instances]",
+      "locustfile": "[steps('basics').locustfile]"
+    }
+  }
+}
