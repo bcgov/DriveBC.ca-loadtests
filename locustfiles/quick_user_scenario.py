@@ -1,7 +1,7 @@
+#This script is mean to test users loading page (lot of stuff then cached), and moving around the site, with occasional API refresh.
 from locust import FastHttpUser, task, between
 
 class fullTestUser(FastHttpUser):
-#    wait_time = between(10, 15)
 
     @task(1)
     def initalLoad(self):
@@ -18,7 +18,7 @@ class fullTestUser(FastHttpUser):
         self.client.get("/api/cms/ferries/")
         self.client.get("/api/events/")
 
-    @task(3)
+    @task(4)
     def cameraPage(self):
         self.client.get("/webcam/api/v1/webcams/719/imageSource")
         self.client.get("/webcam/api/v1/webcams/945/imageSource")
@@ -40,8 +40,25 @@ class fullTestUser(FastHttpUser):
         self.client.get("/webcam/api/v1/webcams/109/imageSource")
         self.client.get("/webcam/api/v1/webcams/739/imageSource")
         self.client.get("/webcam/api/v1/webcams/703/imageSource")
+        self.client.get("/webcam/api/v1/webcams/938/imageSource")
+        self.client.get("/webcam/api/v1/webcams/957/imageSource")
+        self.client.get("/webcam/api/v1/webcams/943/imageSource")
+        self.client.get("/webcam/api/v1/webcams/939/imageSource")
+        self.client.get("/webcam/api/v1/webcams/940/imageSource")
+        self.client.get("/webcam/api/v1/webcams/949/imageSource")
+        self.client.get("/webcam/api/v1/webcams/944/imageSource")
+        self.client.get("/webcam/api/v1/webcams/952/imageSource")
+        self.client.get("/webcam/api/v1/webcams/960/imageSource")
+        self.client.get("/webcam/api/v1/webcams/941/imageSource")
+        self.client.get("/webcam/api/v1/webcams/951/imageSource")
+        self.client.get("/webcam/api/v1/webcams/947/imageSource")
+        self.client.get("/webcam/api/v1/webcams/946/imageSource")
+        self.client.get("/webcam/api/v1/webcams/955/imageSource")
+        self.client.get("/webcam/api/v1/webcams/956/imageSource")
 
-    @task(5)
+        
+
+    @task(7)
     def lookAroundMap(self):
         self.client.get("/webcam/api/v1/webcams/719/imageSource")
         self.client.get("/webcam/api/v1/webcams/945/imageSource")
@@ -68,7 +85,7 @@ class fullTestUser(FastHttpUser):
         self.client.get("/django-media/original_images/kootenaylakeosprey.jpg")
         self.client.get("/django-media/original_images/needlescable.jpg")
 
-    @task(2)
+    @task(3)
     def reloadApi(self):
         self.client.get("/static/js/main.c462f54a.js")
         self.client.get("/api/cms/advisories/")
@@ -80,6 +97,5 @@ class fullTestUser(FastHttpUser):
     @task(2)
     def openBulletinAdvisories(self):
         self.client.get("/django-media/images/workers-above-highway.width-500.png")
-        self.client.get("/static/media/BCSans-Italic.9c3be03a06d30a6ecff0.woff")
         self.client.get("/api/cms/advisories/17/")
         self.client.get("/django-media/original_images/Shift-Into-Winter-LOGO.jpg")
