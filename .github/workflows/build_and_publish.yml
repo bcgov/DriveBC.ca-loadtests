@@ -3,6 +3,7 @@ name: Build and publish image to openshift
 on:
   push:
     branches: [ "main" ]
+    paths-ignore: "azure-locust/**"
   workflow_dispatch:
 
 jobs:
