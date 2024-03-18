@@ -5,8 +5,8 @@ class staticUser(FastHttpUser):
 
     @task()
     def static(self):
-        self.client.get("/static//js/main.8458c03c.js")
-        self.client.get("/static/css/main.88cf6bfe.css")
+        self.client.get("/static/js/main.3c3de86c.js")
+        self.client.get("/static/css/main.6478c6cd.css")
         self.client.get("/favicon.ico")
         self.client.get("/static/media/BCSans-Bold.252ecf87ea37c93b293c.woff")
         self.client.get("/static/media/BCSans-Regular.0079ea8e42d4e81a13d2.woff")
@@ -18,6 +18,7 @@ class staticUser(FastHttpUser):
 #        self.client.get("/django-media/original_images/lytton.jpg")
 #        self.client.get("/django-media/original_images/barnstonisland.jpg")
 
+#In the pod, you can always go to /usr/share/nginx/html/static and then navigate to the sub-folders to get all the static content
 
 #Other static content:
 #BCHwyCrest16.b7711d9f1ab74ccb1b65c271be0047b4.svg
