@@ -939,8 +939,8 @@ class imageCacheLoader(FastHttpUser):
 
     @task
     def image_cache(self):
-        self.client.get(f"/webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageDisplay")
-
+#        self.client.get(f"/webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageDisplay")
+        self.client.get(f"/images/{select_random_item(webcams_list)}.jpg")
         ## DEBUG calls. Turn these on to confirm path/asset validity.
 
         # with self.client.get(f"/webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageDisplay", catch_response=True) as response:
