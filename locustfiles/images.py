@@ -1,3 +1,4 @@
+# Please note: DBC now serves images from disk, which is what this script utilizes. Still have image_cache.py so you can compare performance.
 from locust import FastHttpUser, LoadTestShape, task, events, between
 import random
 
@@ -892,8 +893,8 @@ class imageCacheLoader(FastHttpUser):
 
     @task
     def image_cache(self):
-        self.client.get(f"/webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageDisplay")
-#        self.client.get(f"/images/{select_random_item(webcams_list)}.jpg")
+#        self.client.get(f"/webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageDisplay")
+        self.client.get(f"/images/{select_random_item(webcams_list)}.jpg")
         ## DEBUG calls. Turn these on to confirm path/asset validity.
 
         # with self.client.get(f"/webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageDisplay", catch_response=True) as response:
