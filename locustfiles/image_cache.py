@@ -1,3 +1,4 @@
+# Please note: we no longer use the image cache, just keeping this script so we can compare results between this and images.py
 from locust import FastHttpUser, LoadTestShape, task, events, between
 import random
 
@@ -892,7 +893,7 @@ class imageCacheLoader(FastHttpUser):
 
     @task
     def image_cache(self):
-        self.client.get(f"/webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageDisplay")
+        self.client.get(f"/webcam/api/v1/webcams/{select_random_item(webcams_list)}/imageSource")
 #        self.client.get(f"/images/{select_random_item(webcams_list)}.jpg")
         ## DEBUG calls. Turn these on to confirm path/asset validity.
 
