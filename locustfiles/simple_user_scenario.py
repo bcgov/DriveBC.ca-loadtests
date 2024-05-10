@@ -7,8 +7,8 @@ class DriveBcUser(FastHttpUser):
     @task
     def homepage(self): # TODO: flesh this out
         self.client.get("/")
-        self.client.get("/static/js/main.c462f54a.js")
-        self.client.get("/static/css/main.e088fd2e.css")
+        self.client.get("/static/js/main.82121cbc.js")
+        self.client.get("/static/css/main.b733ae68.css")
         self.client.get("/manifest.json")
         self.client.get("/favicon.ico")
         self.client.get("/api/cms/advisories/?")
@@ -395,7 +395,7 @@ class DriveBcUser(FastHttpUser):
         # self.client.get("/ReplayTheDay/json/719.json") # TODO: Make this pull from the cams list
         self.client.get("/static/media/BCHwyCrest.9291029e030864484ab6e32a1356dc1a.svg")
         self.client.get("/static/media/colocated-camera.db3f3531300ceed4b5c080dc1ae007ff.svg")
-        self.client.get("/webcam/api/v1/webcams/719/imageSource") # TODO: Make this pull from the cams list
+        self.client.get("/images/719.jpg") # TODO: Make this pull from the cams list
 
         ## DEBUG calls. Turn these on to confirm path/asset validity.
 
@@ -603,7 +603,7 @@ class DriveBcUser(FastHttpUser):
         #         return False, err
 
         # # TODO: Make this pull from the cams list
-        # with self.client.get("/webcam/api/v1/webcams/719/imageSource", catch_response=True) as response:
+        # with self.client.get("/images/719.jpg", catch_response=True) as response:
         #     try:
         #         assert response.status_code == 200
         #     except AssertionError as err:
