@@ -5,8 +5,8 @@ class fullTestUser(FastHttpUser):
 
     @task(1)
     def initalLoad(self):
-        self.client.get("/static/js/main.3c3de86c.js")
-        self.client.get("/static/css/main.6478c6cd.css")
+        self.client.get("/static/js/main.82121cbc.js")
+        self.client.get("/static/css/main.b733ae68.css")
         self.client.get("/favicon.ico")
         self.client.get("/static/media/BCSans-Bold.252ecf87ea37c93b293c.woff")
         self.client.get("/static/media/BCSans-Regular.0079ea8e42d4e81a13d2.woff")
