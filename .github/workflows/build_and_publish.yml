@@ -27,14 +27,6 @@ jobs:
             app=locust
           containerfiles: ./Dockerfile
 
-      - name: push to silver registry
-        uses: redhat-actions/push-to-registry@v2.7
-        with:
-          image: locust
-          registry: ${{ secrets.REGISTRY }}
-          username: ${{ secrets.BUILDER_USERNAME }}
-          password: ${{ secrets.BUILDER_TOKEN }}
-
       - name: push to gold registry
         uses: redhat-actions/push-to-registry@v2.7
         with:
