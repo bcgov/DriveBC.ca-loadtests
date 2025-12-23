@@ -32,14 +32,3 @@ class DriveBcUser(FastHttpUser):
         for path in self.endpoints:
             # The 'name' argument groups these in the Locust UI
             self.client.get(path, name=path)
-
-    @task
-    def debug_with_validation(self):
-        """
-        An alternative task that includes the error handling 
-        logic from your original snippet.
-        """
-        for path in self.endpoints:
-            with self.client.get(path, catch_response=True, name=path) as response:
-                if response.status_code != 200:
-                    response.failure(f"Path {path} failed with {response.status_code}")
