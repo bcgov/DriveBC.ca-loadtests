@@ -12,17 +12,18 @@ class DriveBcUser(FastHttpUser):
         "/api/cms/bulletins/?",
         "/api/cms/emergency-alert/?",
         "/api/events/?",
-        "/api/events/DBCRCON-13053/?",
+        "/api/events/DBCRCON-13071/?",
         "/api/eventspolling/?",
-        "/api/eventspolling/DBCRCON-13053/?",
+        "/api/eventspolling/DBCRCON-13071/?",
         "/api/ferries/?",
-        "/api/ferries/coastal",
+        "/api/ferries/coastal/",
         "/api/reststops/?",
         "/api/weather/current/?",
         "/api/weather/hef/?",
         "/api/weather/regional/?",
         "/api/webcams/?",
         "/api/webcams/343/?",
+        "/api/webcams/343/replayTheDay/?"
         "/api/wildfires/?"
     ]
 
