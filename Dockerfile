@@ -1,26 +1,34 @@
-# Use an official Python runtime as a parent image
+# Use an official Locust image as the base
 FROM locustio/locust
 
 USER root
-RUN apt-get update
-RUN apt-get install -y jq vim procps less curl
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    jq \
+    vim \
+    procps \
+    less \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install zstandard to support zstd Accept-Encoding with HttpUser
+RUN pip install --no-cache-dir zstandard
 
 WORKDIR /app
 
-RUN mkdir /app/common
-RUN mkdir /app/locustfiles
-RUN mkdir /app/data
+# Create application directories
+RUN mkdir -p /app/common /app/locustfiles /app/data /app/reports
 
+# Copy application files
 COPY common /app/common
 COPY locustfiles /app/locustfiles
 COPY data /app/data
 COPY start_worker.sh /start_worker.sh
 
-RUN mkdir /app/reports
-RUN chmod 777 /app/reports
-RUN chmod 755 /start_worker.sh
+# Configure permissions
+RUN chmod 777 /app/reports && chmod +x /start_worker.sh
 
 EXPOSE 8089
 
-# ENTRYPOINT [ "/bin/sh", "-c", "trap : TERM INT; sleep infinity & wait" ]
 ENTRYPOINT locust --master -f $TEST_FILE --loglevel WARNING
