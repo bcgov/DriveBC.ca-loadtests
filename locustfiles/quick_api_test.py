@@ -1,28 +1,21 @@
 from locust import FastHttpUser, task, between
 
-class ApiUser(FastHttpUser):
-    # Uncomment wait_time if you want pacing between tasks
-    # wait_time = between(10, 15)
+class apiUser(FastHttpUser):
+#    wait_time = between(10, 15)
 
-    # Adding default headers for all requests sent by this user class
-    headers = {
-        "Accept-Encoding": "zstd, gzip, deflate, br"
-    }
-
-    @task
-    def test_all_apis(self):
-        # Existing endpoints
-        self.client.get("/api/webcams/", headers=self.headers)
-        self.client.get("/api/events/", headers=self.headers)
-        self.client.get("/api/cms/ferries/", headers=self.headers)
-        self.client.get("/api/cms/advisories/", headers=self.headers)
-        self.client.get("/api/cms/bulletins/", headers=self.headers)
-        self.client.get("/api/webcams/1065/", headers=self.headers)
-        self.client.get("/api/webcams/1065/replayTheDay/", headers=self.headers)
-        self.client.get("/api/weather/current/", headers=self.headers)
-        self.client.get("/api/weather/regional/", headers=self.headers)
-        self.client.get("/api/weather/hef/", headers=self.headers)
-        self.client.get("/api/reststops/", headers=self.headers)
-        self.client.get("/api/bordercrossings/", headers=self.headers)
-        self.client.get("/api/wildfires/", headers=self.headers)
-        self.client.get("/api/dms/", headers=self.headers)
+    @task()
+    def api(self):
+        self.client.get("/api/webcams/")
+        self.client.get("/api/events/")
+        self.client.get("/api/cms/ferries/")
+        self.client.get("/api/cms/advisories/")
+        self.client.get("/api/cms/bulletins/")
+        self.client.get("/api/webcams/1065/")
+        self.client.get("/api/webcams/1065/replayTheDay/")
+        self.client.get("/api/weather/current/")
+        self.client.get("/api/weather/regional/")
+        self.client.get("/api/weather/hef/")
+        self.client.get("/api/reststops/")
+        self.client.get("/api/bordercrossings/")
+        self.client.get("/api/wildfires/")
+        self.client.get("/api/dms/")
